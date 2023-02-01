@@ -32,6 +32,7 @@ alias l="exa -l"
 alias ls="exa --icons"
 alias lsa="exa -a --icons"
 alias lsla="exa -la --icons"
+alias cat="bat --paging=never"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 if [ "$TERM" = "linux" ]; then

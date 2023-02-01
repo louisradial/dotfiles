@@ -173,9 +173,9 @@ local widget_fg = theme.color_palette.subtext0
 local widget_bg = theme.color_palette.surface0
 
 -- -- Storage Widget
--- local storage_update_time = 7200
 -- local container_storage_widget = wibox.container
---
+-- local storage_update_time = 7200
+
 -- local storage_widget_root = wibox.widget {
 --     align = 'center',
 --     valign = 'center',
@@ -241,6 +241,128 @@ local widget_bg = theme.color_palette.surface0
 --     spacing = 5,
 --     layout = wibox.layout.fixed.horizontal,
 -- }
+
+-- Memory progressbar widget
+--local container_mem_widget = wibox.container
+--local memory_progressbar = wibox.widget {
+--	max_value        = 16000,
+--	value            = 0.5, -- very hugly -- minimum value to handle to make it look good
+--	margins          = 2,
+--	forced_width     = 80,
+--	shape            = gears.shape.rounded_bar,
+--	border_width     = 0.5,
+--	border_color     = "#b4befe",
+--	color            = "#b4befe",
+--	background_color = widget_bg,
+--	widget           = wibox.widget.progressbar,
+--}
+--
+--local update_memory_widget = function(mem)
+--	memory_progressbar.value = mem
+--end
+--
+--awful.widget.watch('bash -c "free -m | awk \'/Mem/{print $3}\'"', 2, function(self, stdout)
+--	local mem = tonumber(stdout)
+--	update_memory_widget(mem)
+--end)
+--
+--container_mem_widget = {
+--	{
+--		{
+--			{
+--				{
+--					{
+--						text   = "  ",
+--						font   = "JetBrainsMono Nerd Font 9",
+--						widget = wibox.widget.textbox,
+--					},
+--					{
+--						widget = memory_progressbar,
+--					},
+--					layout = wibox.layout.fixed.horizontal
+--				},
+--				left   = 12,
+--				right  = 12,
+--				top    = 2,
+--				bottom = 2,
+--				widget = wibox.container.margin
+--			},
+--			shape  = gears.shape.rounded_bar,
+--			fg     = "#b4befe",
+--			bg     = widget_bg,
+--			widget = wibox.container.background
+--		},
+--		left   = 5,
+--		right  = 5,
+--		top    = 7,
+--		bottom = 7,
+--		widget = wibox.container.margin
+--	},
+--	spacing = 0,
+--	layout  = wibox.layout.fixed.horizontal,
+--}
+
+-- Cpu progressbar widget
+--local container_cpu_widget = wibox.container
+--
+--local cpu_progressbar = wibox.widget {
+--	max_value        = 100,
+--	value            = 0.5, -- very hugly -- minimum value to handle to make it look good
+--	margins          = 2,
+--	forced_width     = 80,
+--	shape            = gears.shape.rounded_bar,
+--	border_width     = 0.5,
+--	border_color     = "#fab387",
+--	color            = "#fab387",
+--	background_color = widget_bg,
+--	widget           = wibox.widget.progressbar,
+--}
+--
+--local update_cpu_widget = function(cpu)
+--	cpu_progressbar.value = cpu
+--end
+--
+--awful.widget.watch(os.getenv("HOME") .. '/scripts/get-cpu.sh', 2, function(self, stdout)
+--	local cpu = tonumber(stdout)
+--	update_cpu_widget(cpu)
+--end)
+--
+--container_cpu_widget = {
+--	{
+--		{
+--			{
+--				{
+--					{
+--						text   = "  ",
+--						font   = "JetBrainsMono Nerd Font 9",
+--						widget = wibox.widget.textbox,
+--					},
+--					{
+--						widget = cpu_progressbar,
+--					},
+--					layout = wibox.layout.fixed.horizontal
+--				},
+--				left   = 12,
+--				right  = 12,
+--				top    = 2,
+--				bottom = 2,
+--				widget = wibox.container.margin
+--			},
+--			shape  = gears.shape.rounded_bar,
+--			fg     = "#fab387",
+--			bg     = widget_bg,
+--			widget = wibox.container.background
+--		},
+--		left   = 5,
+--		right  = 5,
+--		top    = 7,
+--		bottom = 7,
+--		widget = wibox.container.margin
+--	},
+--	spacing = 0,
+--	layout  = wibox.layout.fixed.horizontal,
+--}
+
 
 -- utility function to draw bars
 local draw_bar = function(ratio)
@@ -355,6 +477,53 @@ container_vol_widget = {
     layout  = wibox.layout.fixed.horizontal,
 }
 
+-- Temp widget
+--local container_temp_widget = wibox.container
+--
+--local temp_widget = wibox.widget {
+--	align  = 'center',
+--	valign = 'center',
+--	widget = wibox.widget.textbox
+--}
+--
+--local update_temp_widget = function(temp)
+--	temp_widget.text = "  " .. temp
+--end
+--
+--awful.widget.watch('bash -c "sensors | grep edge | awk \'{print $2}\'"', 2, function(self, stdout)
+--	local temp = stdout
+--	update_temp_widget(temp)
+--end)
+--
+--container_temp_widget = {
+--	{
+--		{
+--			{
+--				{
+--					widget = temp_widget,
+--				},
+--				left   = 12,
+--				right  = 12,
+--				top    = 2,
+--				bottom = 2,
+--				widget = wibox.container.margin
+--			},
+--			shape  = gears.shape.rounded_bar,
+--			fg     = "#a6e3a1",
+--			bg     = widget_bg,
+--			widget = wibox.container.background
+--		},
+--
+--		left   = 20,
+--		right  = 5,
+--		top    = 7,
+--		bottom = 7,
+--		widget = wibox.container.margin
+--	},
+--	spacing = 5,
+--	layout  = wibox.layout.fixed.horizontal,
+--}
+
 -- Batery widget
 local container_battery_widget = wibox.container
 
@@ -423,7 +592,7 @@ container_battery_widget = {
     layout  = wibox.layout.fixed.horizontal,
 }
 
--- Clock widget
+-- Arch widget
 container_arch_widget = {
     {
         {
@@ -481,8 +650,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
 
-    -- Each screen has its own tag table.
-    -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    -- Each screen has its own tag table. ???
     awful.tag({ " ", " ", " ", " ", " ", " ", " ", " ", " " }, s,
         awful.layout.layouts[1])
 
@@ -506,11 +674,11 @@ awful.screen.connect_for_each_screen(function(s)
         widget = wibox.container.margin,
     })
     -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist {
-        screen  = s,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
-    }
+    -- s.mytaglist = awful.widget.taglist {
+    --     screen  = s,
+    --     filter  = awful.widget.taglist.filter.all,
+    --     buttons = taglist_buttons
+    -- }
     s.mytaglist = require("taglist")(s)
 
     -- Create a tasklist widget
@@ -556,8 +724,7 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", border_width = 0, border_color = "#00000000", height = 30,
-        input_passthrough = true, screen = s })
+    s.mywibox = awful.wibar({ position = "top", border_width = 0, border_color = "#00000000", height = 30, input_passthrough = true, screen = s })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -651,6 +818,8 @@ globalkeys = gears.table.join(
     -- Standard program
     awful.key({ modkey, }, "Return", function() awful.spawn(terminal) end,
         { description = "open a terminal", group = "launcher" }),
+    awful.key({ modkey, }, "b", function() awful.spawn(firefox) end,
+        { description = "open firefox", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
         { description = "reload awesome", group = "awesome" }),
     awful.key({ modkey, "Shift" }, "q", awesome.quit,
@@ -699,6 +868,13 @@ globalkeys = gears.table.join(
             }
         end,
         { description = "lua execute prompt", group = "awesome" }),
+	-- -- Rofi
+	-- awful.key({ modkey }, "space", function() awful.spawn("rofi -show run") end,
+	-- 	{ description = "show rofi", group = "launcher" }),
+	--
+	-- -- Rofi Calc
+	-- awful.key({ modkey, "Shift" }, "c", function() awful.spawn("rofi -show calc -modi calc -no-show-match -no-sort") end,
+	-- 	{ description = "show rofi", group = "launcher" }),
     -- Menubar
     -- awful.key({ modkey }, "p", function() menubar.show() end,
     --     { description = "show the menubar", group = "launcher" }),
@@ -908,7 +1084,7 @@ awful.rules.rules = {
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = { type = { "normal", "dialog" }
-    }, properties = { titlebars_enabled = true }
+    }, properties = { titlebars_enabled = false }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.

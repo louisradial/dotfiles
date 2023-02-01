@@ -383,7 +383,6 @@ local br, br_signal = awful.widget.watch(os.getenv("HOME") .. '/scripts/brightne
 	update_brightness_widget(brightness)
 end)
 
-
 container_brightness_widget = {
 	{
 		{
