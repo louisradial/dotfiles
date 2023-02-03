@@ -50,16 +50,16 @@ end
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua") -- gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "kitty"
-editor = "/usr/bin/nvim" or os.getenv("EDITOR") -- change this to get info from os configuration
-editor_cmd = terminal .. " -e " .. editor
+local terminal = "kitty"
+local editor = os.getenv("EDITOR") or "nvim" -- change this to get info from os configuration
+local editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+local modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -84,7 +84,7 @@ awful.layout.layouts = {
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-myawesomemenu = {
+local myawesomemenu = {
     { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
     { "manual", terminal .. " -e man awesome" },
     { "edit config", editor_cmd .. " " .. awesome.conffile },
@@ -92,12 +92,12 @@ myawesomemenu = {
     { "quit", function() awesome.quit() end },
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+local mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
     { "open terminal", terminal }
 }
 })
 
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
+local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
     menu = mymainmenu })
 
 -- Menubar configuration
@@ -105,11 +105,9 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- }}}
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+local mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
--- Create a textclock widget
-mytextclock = wibox.widget.textclock()
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = gears.table.join(
@@ -172,479 +170,23 @@ screen.connect_signal("property::geometry", set_wallpaper)
 local widget_fg = theme.color_palette.subtext0
 local widget_bg = theme.color_palette.surface0
 
--- -- Storage Widget
--- local container_storage_widget = wibox.container
--- local storage_update_time = 7200
+-- local storage_widget = require("widgets.storage")
+-- local memory_widget = require("widgets.memory")
+-- local cpu_widget = require("widgets.cpu")
 
--- local storage_widget_root = wibox.widget {
---     align = 'center',
---     valign = 'center',
---     widget = wibox.widget.textbox,
--- }
---
--- local update_storage_root = function(st_root)
---     storage_widget_root.text = " " .. st_root
--- end
---
--- -- local storage_widget_home = wibox.widget {
--- --     align = 'center',
--- --     valign = 'center',
--- --     widget = wibox.widget.textbox,
--- -- }
---
--- -- local update_storage_home = function(st_home)
--- --     storage_widget_home.text = " " .. st_home
--- -- end
---
--- local storage_root = awful.widget.watch('bash -c "df -h | awk \'NR==4 {print $4}\'"', storage_update_time,
---     function(self, stdout)
---         local st_root = stdout
---         update_storage_root(st_root)
---     end)
---
--- -- local storage_home = awful.widget.watch(os.getenv("HOME") .. '/scripts/disk-usage.sh', 60, function(self, stdout)
--- -- 	st_home = stdout
--- -- 	update_storage_home(st_home)
--- -- end)
---
--- container_storage_widget = {
---     {
---         {
---             {
---                 {
---                     {
---                         widget = storage_widget_root,
---                     },
---                     -- {
---                     --     widget = storage_widget_home,
---                     -- },
---                     layout = wibox.layout.flex.horizontal
---                 },
---                 left = 5,
---                 right = 5,
---                 top = 2,
---                 bottom = 2,
---                 widget = wibox.container.margin,
---             },
---             shape = gears.shape.rounded_bar,
---             fg = theme.color_palette.lavender,
---             bg = widget_bg,
---             forced_width = 70, -- 140,
---             widget = wibox.container.background
---         },
---         left = 10,
---         right = 5,
---         top = 7,
---         bottom = 7,
---         widget = wibox.container.margin
---     },
---     spacing = 5,
---     layout = wibox.layout.fixed.horizontal,
--- }
+local brightness_widget = require("widgets.brightness")
+local volume_widget = require("widgets.volume")
 
--- Memory progressbar widget
---local container_mem_widget = wibox.container
---local memory_progressbar = wibox.widget {
---	max_value        = 16000,
---	value            = 0.5, -- very hugly -- minimum value to handle to make it look good
---	margins          = 2,
---	forced_width     = 80,
---	shape            = gears.shape.rounded_bar,
---	border_width     = 0.5,
---	border_color     = "#b4befe",
---	color            = "#b4befe",
---	background_color = widget_bg,
---	widget           = wibox.widget.progressbar,
---}
---
---local update_memory_widget = function(mem)
---	memory_progressbar.value = mem
---end
---
---awful.widget.watch('bash -c "free -m | awk \'/Mem/{print $3}\'"', 2, function(self, stdout)
---	local mem = tonumber(stdout)
---	update_memory_widget(mem)
---end)
---
---container_mem_widget = {
---	{
---		{
---			{
---				{
---					{
---						text   = "  ",
---						font   = "JetBrainsMono Nerd Font 9",
---						widget = wibox.widget.textbox,
---					},
---					{
---						widget = memory_progressbar,
---					},
---					layout = wibox.layout.fixed.horizontal
---				},
---				left   = 12,
---				right  = 12,
---				top    = 2,
---				bottom = 2,
---				widget = wibox.container.margin
---			},
---			shape  = gears.shape.rounded_bar,
---			fg     = "#b4befe",
---			bg     = widget_bg,
---			widget = wibox.container.background
---		},
---		left   = 5,
---		right  = 5,
---		top    = 7,
---		bottom = 7,
---		widget = wibox.container.margin
---	},
---	spacing = 0,
---	layout  = wibox.layout.fixed.horizontal,
---}
-
--- Cpu progressbar widget
---local container_cpu_widget = wibox.container
---
---local cpu_progressbar = wibox.widget {
---	max_value        = 100,
---	value            = 0.5, -- very hugly -- minimum value to handle to make it look good
---	margins          = 2,
---	forced_width     = 80,
---	shape            = gears.shape.rounded_bar,
---	border_width     = 0.5,
---	border_color     = "#fab387",
---	color            = "#fab387",
---	background_color = widget_bg,
---	widget           = wibox.widget.progressbar,
---}
---
---local update_cpu_widget = function(cpu)
---	cpu_progressbar.value = cpu
---end
---
---awful.widget.watch(os.getenv("HOME") .. '/scripts/get-cpu.sh', 2, function(self, stdout)
---	local cpu = tonumber(stdout)
---	update_cpu_widget(cpu)
---end)
---
---container_cpu_widget = {
---	{
---		{
---			{
---				{
---					{
---						text   = "  ",
---						font   = "JetBrainsMono Nerd Font 9",
---						widget = wibox.widget.textbox,
---					},
---					{
---						widget = cpu_progressbar,
---					},
---					layout = wibox.layout.fixed.horizontal
---				},
---				left   = 12,
---				right  = 12,
---				top    = 2,
---				bottom = 2,
---				widget = wibox.container.margin
---			},
---			shape  = gears.shape.rounded_bar,
---			fg     = "#fab387",
---			bg     = widget_bg,
---			widget = wibox.container.background
---		},
---		left   = 5,
---		right  = 5,
---		top    = 7,
---		bottom = 7,
---		widget = wibox.container.margin
---	},
---	spacing = 0,
---	layout  = wibox.layout.fixed.horizontal,
---}
-
-
--- utility function to draw bars
-local draw_bar = function(ratio)
-    local max_number = 6
-    local on = ""
-    local off = "·"
-    local count_on = math.ceil(ratio * max_number)
-    return string.rep(on, count_on) .. string.rep(off, max_number - count_on)
-end
-
--- Brightness widget
-local container_brightness_widget = wibox.container
-
-local brightness_widget = wibox.widget {
-    align  = 'center',
-    valign = 'center',
-    widget = wibox.widget.textbox
-}
-
-local update_brightness_widget = function(brightness)
-    brightness_widget.text = "  " .. brightness
-end
-
-local br, brightness_signal = awful.widget.watch('light -G', 7200, function(self, stdout)
-    local brightness = draw_bar(tonumber(stdout) / 100.0)
-    update_brightness_widget(brightness)
-end)
-
-container_brightness_widget = {
-    {
-        {
-            {
-                {
-                    widget = brightness_widget,
-                    font = "Roboto Mono Nerd Font 10"
-                },
-                left   = 12,
-                right  = 12,
-                top    = 0,
-                bottom = 0,
-                widget = wibox.container.margin
-            },
-            shape  = gears.shape.rounded_bar,
-            fg     = theme.color_palette.peach,
-            bg     = widget_bg,
-            widget = wibox.container.background
-        },
-        left   = 5,
-        right  = 5,
-        top    = 7,
-        bottom = 7,
-        widget = wibox.container.margin
-    },
-    spacing = 5,
-    layout  = wibox.layout.fixed.horizontal,
-}
-
--- Volume widget
-local container_vol_widget = wibox.container
-
-local vol_widget = wibox.widget {
-    align  = 'center',
-    valign = 'center',
-    widget = wibox.widget.textbox
-}
-
-local update_vol_widget = function(volume_level, volume_mute)
-    local volume_icon = ""
-    if volume_mute then volume_icon = "  "
-    else volume_icon = "  " end
-    vol_widget.text = volume_icon .. volume_level
-end
-
-local vo, volume_signal = awful.widget.watch('bash -c "amixer -M get Master | awk \'NR==5 {print $4 $6}\'"', 7200,
-    function(self, stdout)
-        local words = {}
-        for word in string.gmatch(stdout, "[^%p]+") do
-            table.insert(words, word)
-        end
-        local volume_level = draw_bar(tonumber(words[1]) / 100.0)
-        local volume_mute = (words[2] == 'off')
-        update_vol_widget(volume_level, volume_mute)
-    end)
-
-container_vol_widget = {
-    {
-        {
-            {
-                {
-                    widget = vol_widget,
-                    font = "Roboto Mono Nerd Font 10"
-                },
-                left   = 12,
-                right  = 12,
-                top    = 0,
-                bottom = 0,
-                widget = wibox.container.margin
-            },
-            shape  = gears.shape.rounded_bar,
-            fg     = theme.color_palette.red,
-            bg     = widget_bg,
-            widget = wibox.container.background
-        },
-
-        left   = 5,
-        right  = 5,
-        top    = 7,
-        bottom = 7,
-        widget = wibox.container.margin
-    },
-    spacing = 5,
-    layout  = wibox.layout.fixed.horizontal,
-}
-
--- Temp widget
---local container_temp_widget = wibox.container
---
---local temp_widget = wibox.widget {
---	align  = 'center',
---	valign = 'center',
---	widget = wibox.widget.textbox
---}
---
---local update_temp_widget = function(temp)
---	temp_widget.text = "  " .. temp
---end
---
---awful.widget.watch('bash -c "sensors | grep edge | awk \'{print $2}\'"', 2, function(self, stdout)
---	local temp = stdout
---	update_temp_widget(temp)
---end)
---
---container_temp_widget = {
---	{
---		{
---			{
---				{
---					widget = temp_widget,
---				},
---				left   = 12,
---				right  = 12,
---				top    = 2,
---				bottom = 2,
---				widget = wibox.container.margin
---			},
---			shape  = gears.shape.rounded_bar,
---			fg     = "#a6e3a1",
---			bg     = widget_bg,
---			widget = wibox.container.background
---		},
---
---		left   = 20,
---		right  = 5,
---		top    = 7,
---		bottom = 7,
---		widget = wibox.container.margin
---	},
---	spacing = 5,
---	layout  = wibox.layout.fixed.horizontal,
---}
+-- local temp_widget = require("widgets.temp")
 
 -- Batery widget
-local container_battery_widget = wibox.container
-
-local battery_widget = wibox.widget {
-    align  = 'center',
-    valign = 'center',
-    widget = wibox.widget.textbox
-}
-
-local update_battery_widget = function(battery_level, charging_status)
-    local battery_icon = ""
-    local discharging  = { "󱃍 ", "󰁺 ", "󰁻 ", "󰁼 ", "󰁽 ", "󰁾 ", "󰁿 ", "󰂀 ", "󰂁 ", "󰂂 ", " " }
-    local charging     = { "󰢟 ", "󰢜 ", "󰂆 ", "󰂇 ", "󰂈 ", "󰢝 ", "󰂉 ", "󰢞 ", "󰂊 ", "󰂋 ", "󰂅 " }
-
-    local id = 1
-    if battery_level >= 95 then
-        id = 11
-    else id = math.ceil(battery_level / 10.0)
-    end
-    if charging_status == "Charging" or charging_status == "Full" then
-        battery_icon = charging[id]
-    else battery_icon = discharging[id]
-    end
-
-    battery_widget.text = battery_icon .. battery_level .. "%"
-end
-
-awful.widget.watch('bash -c "cat /sys/class/power_supply/BAT0/capacity; cat /sys/class/power_supply/BAT0/status"', 60,
-    function(self, stdout)
-        local words = {}
-        for word in stdout:gmatch("[^%s]+") do
-            table.insert(words, word)
-        end
-        local battery_level = tonumber(words[1])
-        local charging_status = words[2]
-        update_battery_widget(battery_level, charging_status)
-    end)
-
-container_battery_widget = {
-    {
-        {
-            {
-                {
-                    widget = battery_widget,
-                    font = "Roboto Mono Nerd Font 9"
-                },
-                left   = 12,
-                right  = 12,
-                top    = 0,
-                bottom = 0,
-                widget = wibox.container.margin
-            },
-            shape  = gears.shape.rounded_bar,
-            fg     = theme.color_palette.green,
-            bg     = widget_bg,
-            widget = wibox.container.background
-        },
-
-        left   = 5,
-        right  = 5,
-        top    = 7,
-        bottom = 7,
-        widget = wibox.container.margin
-    },
-    spacing = 5,
-    layout  = wibox.layout.fixed.horizontal,
-}
+local battery_widget = require("widgets.battery")
 
 -- Arch widget
-container_arch_widget = {
-    {
-        {
-            text = "  ",
-            font = "JetBrainsMono Nerd Font 15",
-            widget = wibox.widget.textbox,
-        },
-        left   = 0,
-        right  = 5,
-        top    = 2,
-        bottom = 2,
-        widget = wibox.container.margin
-    },
-    fg     = theme.color_palette.mauve,
-    widget = wibox.container.background
-}
+local arch_widget = require("widgets.arch")
 
 -- Clock widget
-container_clock_widget = {
-    {
-        {
-            {
-                {
-                    widget = mytextclock,
-                },
-                left   = 6,
-                right  = 6,
-                top    = 0,
-                bottom = 0,
-                widget = wibox.container.margin
-            },
-            shape  = gears.shape.rounded_bar,
-            fg     = theme.color_palette.pink,
-            bg     = widget_bg,
-            widget = wibox.container.background
-        },
-
-        left   = 5,
-        right  = 5,
-        top    = 7,
-        bottom = 7,
-        widget = wibox.container.margin
-    },
-    spacing = 5,
-    layout  = wibox.layout.fixed.horizontal,
-}
-
--- local archimage = wibox.widget {
--- 	image  = theme.layout_archlogo,
--- 	resize = false,
--- 	widget = wibox.widget.imagebox
--- }
+local clock_widget = require("widgets.clock")
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -731,7 +273,7 @@ awful.screen.connect_for_each_screen(function(s)
         {
             layout = wibox.layout.align.horizontal,
             { -- Left widgets
-                container_arch_widget,
+                arch_widget.container,
                 layout = wibox.layout.fixed.horizontal,
                 --mylauncher,
                 s.mytaglist,
@@ -743,14 +285,14 @@ awful.screen.connect_for_each_screen(function(s)
             },
             { -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
-                --container_temp_widget,
-                -- container_storage_widget,
-                --container_cpu_widget,
-                --container_mem_widget,
-                container_brightness_widget,
-                container_vol_widget,
-                container_battery_widget,
-                container_clock_widget,
+                --temp_widget.container,
+                --storage_widget.container,
+                --cpu_widget.container,
+                --mem_widget.container,
+                brightness_widget.container,
+                volume_widget.container,
+                battery_widget.container,
+                clock_widget.container,
                 layoutbox,
             }
         },
@@ -770,7 +312,7 @@ root.buttons(gears.table.join(
 -- }}}
 
 -- {{{ Key bindings
-globalkeys = gears.table.join(
+local globalkeys = gears.table.join(
     awful.key({ modkey, }, "s", hotkeys_popup.show_help,
         { description = "show help", group = "awesome" }),
     awful.key({ modkey, }, "Left", awful.tag.viewprev,
@@ -893,36 +435,36 @@ globalkeys = gears.table.join(
     awful.key({}, "XF86AudioRaiseVolume",
         function()
             awful.util.spawn("amixer -M set Master 1dB+", false)
-            volume_signal:emit_signal('timeout')
+            volume_widget.signal:emit_signal('timeout')
         end,
         { description = "Audio up", group = "system" }),
     awful.key({}, "XF86AudioLowerVolume",
         function()
             awful.util.spawn("amixer -M set Master 2%-", false)
-            volume_signal:emit_signal('timeout')
+            volume_widget.signal:emit_signal('timeout')
         end,
         { description = "Audio down", group = "system" }),
     awful.key({}, "XF86AudioMute",
         function()
             awful.util.spawn("amixer set Master toggle", false)
-            volume_signal:emit_signal('timeout')
+            volume_widget.signal:emit_signal('timeout')
         end,
         { description = "Toggle Mute", group = "system" }),
     awful.key({}, "XF86MonBrightnessDown",
         function()
             awful.util.spawn("light -U 20", false)
-            brightness_signal:emit_signal('timeout')
+            brightness_widget.signal:emit_signal('timeout')
         end,
         { description = "Brightness down", group = "system" }),
     awful.key({}, "XF86MonBrightnessUp",
         function()
             awful.util.spawn("light -A 20", false)
-            brightness_signal:emit_signal('timeout')
+            brightness_widget.signal:emit_signal('timeout')
         end,
         { description = "Brightness up", group = "system" })
 )
 
-clientkeys = gears.table.join(
+local clientkeys = gears.table.join(
     awful.key({ modkey, }, "f",
         function(c)
             c.fullscreen = not c.fullscreen
@@ -1016,7 +558,7 @@ for i = 1, 9 do
     )
 end
 
-clientbuttons = gears.table.join(
+local clientbuttons = gears.table.join(
     awful.button({}, 1, function(c)
         c:emit_signal("request::activate", "mouse_click", { raise = true })
     end),

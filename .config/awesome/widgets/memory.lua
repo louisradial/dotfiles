@@ -1,0 +1,59 @@
+-- Memory progressbar widget
+--local container_mem_widget = wibox.container
+--local memory_progressbar = wibox.widget {
+--	max_value        = 16000,
+--	value            = 0.5, -- very hugly -- minimum value to handle to make it look good
+--	margins          = 2,
+--	forced_width     = 80,
+--	shape            = gears.shape.rounded_bar,
+--	border_width     = 0.5,
+--	border_color     = "#b4befe",
+--	color            = "#b4befe",
+--	background_color = widget_bg,
+--	widget           = wibox.widget.progressbar,
+--}
+--
+--local update_memory_widget = function(mem)
+--	memory_progressbar.value = mem
+--end
+--
+--awful.widget.watch('bash -c "free -m | awk \'/Mem/{print $3}\'"', 2, function(self, stdout)
+--	local mem = tonumber(stdout)
+--	update_memory_widget(mem)
+--end)
+--
+--container_mem_widget = {
+--	{
+--		{
+--			{
+--				{
+--					{
+--						text   = "  ",
+--						font   = "JetBrainsMono Nerd Font 9",
+--						widget = wibox.widget.textbox,
+--					},
+--					{
+--						widget = memory_progressbar,
+--					},
+--					layout = wibox.layout.fixed.horizontal
+--				},
+--				left   = 12,
+--				right  = 12,
+--				top    = 2,
+--				bottom = 2,
+--				widget = wibox.container.margin
+--			},
+--			shape  = gears.shape.rounded_bar,
+--			fg     = "#b4befe",
+--			bg     = widget_bg,
+--			widget = wibox.container.background
+--		},
+--		left   = 5,
+--		right  = 5,
+--		top    = 7,
+--		bottom = 7,
+--		widget = wibox.container.margin
+--	},
+--	spacing = 0,
+--	layout  = wibox.layout.fixed.horizontal,
+--}

@@ -1,0 +1,46 @@
+-- Temp widget
+--local container_temp_widget = wibox.container
+--
+--local temp_widget = wibox.widget {
+--	align  = 'center',
+--	valign = 'center',
+--	widget = wibox.widget.textbox
+--}
+--
+--local update_temp_widget = function(temp)
+--	temp_widget.text = "  " .. temp
+--end
+--
+--awful.widget.watch('bash -c "sensors | grep edge | awk \'{print $2}\'"', 2, function(self, stdout)
+--	local temp = stdout
+--	update_temp_widget(temp)
+--end)
+--
+--container_temp_widget = {
+--	{
+--		{
+--			{
+--				{
+--					widget = temp_widget,
+--				},
+--				left   = 12,
+--				right  = 12,
+--				top    = 2,
+--				bottom = 2,
+--				widget = wibox.container.margin
+--			},
+--			shape  = gears.shape.rounded_bar,
+--			fg     = "#a6e3a1",
+--			bg     = widget_bg,
+--			widget = wibox.container.background
+--		},
+--
+--		left   = 20,
+--		right  = 5,
+--		top    = 7,
+--		bottom = 7,
+--		widget = wibox.container.margin
+--	},
+--	spacing = 5,
+--	layout  = wibox.layout.fixed.horizontal,
+--}

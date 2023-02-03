@@ -1,0 +1,60 @@
+-- Cpu progressbar widget
+--local container_cpu_widget = wibox.container
+--
+--local cpu_progressbar = wibox.widget {
+--	max_value        = 100,
+--	value            = 0.5, -- very hugly -- minimum value to handle to make it look good
+--	margins          = 2,
+--	forced_width     = 80,
+--	shape            = gears.shape.rounded_bar,
+--	border_width     = 0.5,
+--	border_color     = "#fab387",
+--	color            = "#fab387",
+--	background_color = widget_bg,
+--	widget           = wibox.widget.progressbar,
+--}
+--
+--local update_cpu_widget = function(cpu)
+--	cpu_progressbar.value = cpu
+--end
+--
+--awful.widget.watch(os.getenv("HOME") .. '/scripts/get-cpu.sh', 2, function(self, stdout)
+--	local cpu = tonumber(stdout)
+--	update_cpu_widget(cpu)
+--end)
+--
+--container_cpu_widget = {
+--	{
+--		{
+--			{
+--				{
+--					{
+--						text   = "  ",
+--						font   = "JetBrainsMono Nerd Font 9",
+--						widget = wibox.widget.textbox,
+--					},
+--					{
+--						widget = cpu_progressbar,
+--					},
+--					layout = wibox.layout.fixed.horizontal
+--				},
+--				left   = 12,
+--				right  = 12,
+--				top    = 2,
+--				bottom = 2,
+--				widget = wibox.container.margin
+--			},
+--			shape  = gears.shape.rounded_bar,
+--			fg     = "#fab387",
+--			bg     = widget_bg,
+--			widget = wibox.container.background
+--		},
+--		left   = 5,
+--		right  = 5,
+--		top    = 7,
+--		bottom = 7,
+--		widget = wibox.container.margin
+--	},
+--	spacing = 0,
+--	layout  = wibox.layout.fixed.horizontal,
+--}
