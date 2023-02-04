@@ -3,8 +3,8 @@ local map = vim.keymap.set
 -- map('n', '<leader>w', ':w<CR>')
 map('n', '<C-q>', ':q<CR>', { desc = '[Q]uit nvim'})
 map('n', '<leader>q', ':bd<CR>', { desc = '[Q]uit current buffer'})
-map('n', '<leader><Right>', ':bnext<CR>', {desc = 'Move to the next buffer'})
-map('n', '<leader><Left>', ':bprev<CR>', {desc = 'Move to the previous buffer'})
+map('n', '<leader><Right>', ':bnext<CR>', {silent = true, desc = 'Move to the next buffer'})
+map('n', '<leader><Left>', ':bprev<CR>', {silent = true, desc = 'Move to the previous buffer'})
 
 -- Convenience things
 map("n", "0", "^")
@@ -16,10 +16,15 @@ map("n", "k", "gk")
 map('n', '<leader>o', 'o<Esc>', { desc = 'Insert new line below the cursor and exit Insert mode'})
 map('n', '<leader>O', 'O<Esc>', { desc = 'Insert new line above the cursor and exit Insert mode'})
 
-
--- visual selection move up/down
-map('v', 'J', ":m '>+1<CR>gv=gv")
-map('v', 'K', ":m '<-2<CR>gv=gv")
+-- normal current line move up/down
+map('n', '<A-j>', ":m .+1<CR>==", {silent = true})
+map('n', '<A-k>', ":m .-2<CR>==", {silent = true})
+-- normal current line move up/down
+map('i', '<A-j>', "<Esc>:m .+1<CR>==gi", {silent = true})
+map('i', '<A-k>', "<Esc>:m .-2<CR>==gi", {silent = true})
+-- visual current line move up/down
+map('v', '<A-j>', ":m '>+1<CR>gv=gv", {silent = true})
+map('v', '<A-k>', ":m '<-2<CR>gv=gv", {silent = true})
 
 -- cursor kept in place
 map('n', 'J', "mzJ`z")
