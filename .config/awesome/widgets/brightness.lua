@@ -3,7 +3,7 @@ local watch = require("awful.widget.watch")
 local wibox = require("wibox")
 local gears = require("gears")
 -- local dpi = require("beautiful").xresources.apply_dpi
-local theme = require("theme")
+local color_palette = require("theme.colors")
 local utils = require("widgets.utils")
 
 -- Brightness widget
@@ -39,8 +39,8 @@ container_brightness_widget = {
                 widget = wibox.container.margin
             },
             shape  = gears.shape.rounded_bar,
-            fg     = theme.color_palette.peach,
-            bg     = theme.color_palette.surface0,
+            fg     = color_palette.peach,
+            bg     = color_palette.surface0,
             widget = wibox.container.background
         },
         left   = 5,

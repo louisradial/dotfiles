@@ -1,7 +1,7 @@
 local watch = require("awful.widget.watch")
 local wibox = require("wibox")
 local gears = require("gears")
-local theme = require("theme")
+local color_palette = require("theme.colors")
 local utils = require("widgets.utils")
 -- Volume widget
 local container_volume_widget = wibox.container
@@ -45,8 +45,8 @@ container_volume_widget = {
                 widget = wibox.container.margin
             },
             shape  = gears.shape.rounded_bar,
-            fg     = theme.color_palette.red,
-            bg     = theme.color_palette.surface0,
+            fg     = color_palette.red,
+            bg     = color_palette.surface0,
             widget = wibox.container.background
         },
 

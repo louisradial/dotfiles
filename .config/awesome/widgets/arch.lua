@@ -3,7 +3,7 @@
 local wibox = require("wibox")
 -- local gears = require("gears")
 -- local dpi = require("beautiful").xresources.apply_dpi
-local theme = require("theme")
+local color_palette = require("theme.colors")
 
 -- Arch widget
 local container_arch_widget = {
@@ -19,7 +19,7 @@ local container_arch_widget = {
         bottom = 2,
         widget = wibox.container.margin
     },
-    fg     = theme.color_palette.mauve,
+    fg     = color_palette.mauve,
     widget = wibox.container.background
 }
 

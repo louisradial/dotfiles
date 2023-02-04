@@ -4,7 +4,7 @@ local watch = require("awful.widget.watch")
 local wibox = require("wibox")
 local gears = require("gears")
 -- local dpi = require("beautiful").xresources.apply_dpi
-local theme = require("theme")
+local color_palette = require("theme.colors")
 
 local container_battery_widget = wibox.container
 
@@ -58,8 +58,8 @@ container_battery_widget = {
                 widget = wibox.container.margin
             },
             shape  = gears.shape.rounded_bar,
-            fg     = theme.color_palette.green,
-            bg     = theme.color_palette.surface0,
+            fg     = color_palette.green,
+            bg     = color_palette.surface0,
             widget = wibox.container.background
         },
 

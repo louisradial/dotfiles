@@ -47,7 +47,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua") -- gears.filesystem.get_themes_dir() .. "default/theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 local terminal = "kitty"
@@ -167,8 +167,9 @@ screen.connect_signal("property::geometry", set_wallpaper)
 ---------------------------------
 -- Custom Widgets
 ---------------------------------
-local widget_fg = theme.color_palette.subtext0
-local widget_bg = theme.color_palette.surface0
+local color_palette = require("theme.colors")
+local widget_fg = color_palette.subtext0
+local widget_bg = color_palette.surface0
 
 -- local storage_widget = require("widgets.storage")
 -- local memory_widget = require("widgets.memory")

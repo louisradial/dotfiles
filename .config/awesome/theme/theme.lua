@@ -1,52 +1,19 @@
----------------------------
--- Default awesome theme --
----------------------------
-
 local theme_assets = require("beautiful.theme_assets")
-local beautiful = require("beautiful")
+-- local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
-local wibox = require("wibox")
-local awful = require("awful")
-local gears = require("gears")
-local gcolor = require("gears.color")
-local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
-
-
+-- local wibox = require("wibox")
+-- local awful = require("awful")
+-- local gears = require("gears")
+-- local gcolor = require("gears.color")
+-- local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
 local theme = {}
-local color_palette = {
-    rosewater = "#f5e0dc",
-    flamingo = "#f2cdcd",
-    pink = "#f5c2e7",
-    mauve = "#cba6f7",
-    red = "#f38ba8",
-    maroon = "#eba0ac",
-    peach = "#fab387",
-    yellow = "#f9e2af",
-    green = "#a6e3a1",
-    teal = "#94e2d5",
-    sky = "#89dceb",
-    sapphire = "#74c7ec",
-    blue = "#89b4fa",
-    lavender = "#b4befe",
-    text = "#cdd6f4",
-    subtext0 = "#a6adc8",
-    subtext1 = "#bac2de",
-    overlay0 = "#6c7086",
-    overlay1 = "#7f849c",
-    overlay2 = "#9399b2",
-    surface0 = "#313244",
-    surface1 = "#45475a",
-    surface2 = "#585b70",
-    base = "#1e1e2e",
-    mantle = "#181825",
-    crust = "#11111b"
-}
-theme.color_palette = color_palette
+
+local color_palette = require("theme.colors")
 
 -- theme.font         = "JetBrainsMono Nerd Font 10"
 -- theme.taglist_font = "JetBrainsMono Nerd Font 10"
@@ -98,10 +65,10 @@ theme.border_marked = color_palette.peach
 --)
 
 -- MEM
-local memicon = wibox.widget.imagebox(theme.widget_mem)
+-- local memicon = wibox.widget.imagebox(theme.widget_mem)
 
 -- CPU
-local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
+-- local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 
 -- Variables set for theming notifications:
 -- notification_font
@@ -122,31 +89,31 @@ theme.menu_width        = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.titlebar_close_button_normal = nil --themes_path .. "default/titlebar/close_normal.png"
-theme.titlebar_close_button_focus  = nil --themes_path .. "default/titlebar/close_focus.png"
+theme.titlebar_close_button_normal = themes_path .. "default/titlebar/close_normal.png"
+theme.titlebar_close_button_focus  = themes_path .. "default/titlebar/close_focus.png"
 
 theme.titlebar_minimize_button_normal = themes_path .. "default/titlebar/minimize_normal.png"
 theme.titlebar_minimize_button_focus  = themes_path .. "default/titlebar/minimize_focus.png"
 
-theme.titlebar_ontop_button_normal_inactive = nil --themes_path .. "default/titlebar/ontop_normal_inactive.png"
-theme.titlebar_ontop_button_focus_inactive  = nil -- themes_path .. "default/titlebar/ontop_focus_inactive.png"
-theme.titlebar_ontop_button_normal_active   = nil -- themes_path .. "default/titlebar/ontop_normal_active.png"
-theme.titlebar_ontop_button_focus_active    = nil -- themes_path .. "default/titlebar/ontop_focus_active.png"
+theme.titlebar_ontop_button_normal_inactive = themes_path .. "default/titlebar/ontop_normal_inactive.png"
+theme.titlebar_ontop_button_focus_inactive  = themes_path .. "default/titlebar/ontop_focus_inactive.png"
+theme.titlebar_ontop_button_normal_active   = themes_path .. "default/titlebar/ontop_normal_active.png"
+theme.titlebar_ontop_button_focus_active    = themes_path .. "default/titlebar/ontop_focus_active.png"
 
-theme.titlebar_sticky_button_normal_inactive = nil -- themes_path .. "default/titlebar/sticky_normal_inactive.png"
-theme.titlebar_sticky_button_focus_inactive  = nil -- themes_path .. "default/titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_active   = nil -- themes_path .. "default/titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_active    = nil -- themes_path .. "default/titlebar/sticky_focus_active.png"
+theme.titlebar_sticky_button_normal_inactive = themes_path .. "default/titlebar/sticky_normal_inactive.png"
+theme.titlebar_sticky_button_focus_inactive  = themes_path .. "default/titlebar/sticky_focus_inactive.png"
+theme.titlebar_sticky_button_normal_active   = themes_path .. "default/titlebar/sticky_normal_active.png"
+theme.titlebar_sticky_button_focus_active    = themes_path .. "default/titlebar/sticky_focus_active.png"
 
-theme.titlebar_floating_button_normal_inactive = nil -- themes_path .. "default/titlebar/floating_normal_inactive.png"
-theme.titlebar_floating_button_focus_inactive  = nil -- themes_path .. "default/titlebar/floating_focus_inactive.png"
-theme.titlebar_floating_button_normal_active   = nil -- themes_path .. "default/titlebar/floating_normal_active.png"
-theme.titlebar_floating_button_focus_active    = nil -- themes_path .. "default/titlebar/floating_focus_active.png"
+theme.titlebar_floating_button_normal_inactive = themes_path .. "default/titlebar/floating_normal_inactive.png"
+theme.titlebar_floating_button_focus_inactive  = themes_path .. "default/titlebar/floating_focus_inactive.png"
+theme.titlebar_floating_button_normal_active   = themes_path .. "default/titlebar/floating_normal_active.png"
+theme.titlebar_floating_button_focus_active    = themes_path .. "default/titlebar/floating_focus_active.png"
 
-theme.titlebar_maximized_button_normal_inactive = nil -- themes_path .. "default/titlebar/maximized_normal_inactive.png"
-theme.titlebar_maximized_button_focus_inactive  = nil -- themes_path .. "default/titlebar/maximized_focus_inactive.png"
-theme.titlebar_maximized_button_normal_active   = nil -- themes_path .. "default/titlebar/maximized_normal_active.png"
-theme.titlebar_maximized_button_focus_active    = nil -- themes_path .. "default/titlebar/maximized_focus_active.png"
+theme.titlebar_maximized_button_normal_inactive = themes_path .. "default/titlebar/maximized_normal_inactive.png"
+theme.titlebar_maximized_button_focus_inactive  = themes_path .. "default/titlebar/maximized_focus_inactive.png"
+theme.titlebar_maximized_button_normal_active   = themes_path .. "default/titlebar/maximized_normal_active.png"
+theme.titlebar_maximized_button_focus_active    = themes_path .. "default/titlebar/maximized_focus_active.png"
 
 theme.wallpaper = os.getenv("HOME") .. "/Pictures/wallpapers/dark-cat.png"
 --theme.wallpaper = os.getenv("HOME") .. "/Pictures/wallpapers/darker_unicat.png"
@@ -170,13 +137,6 @@ theme.layout_cornerne   = themes_path .. "default/layouts/cornernew.png"
 theme.layout_cornersw   = themes_path .. "default/layouts/cornersww.png"
 theme.layout_cornerse   = themes_path .. "default/layouts/cornersew.png"
 
--- theme.layout_archlogo = "/home/sv/pictures/Icons-AwesomeWM-Layouts-pastel/archlinux.png"
-
-
-for _, value in ipairs { true, false } do
-    beautiful.tasklist_plain_task_name = false
-end
-
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(
     theme.menu_height, theme.bg_focus, theme.fg_focus
@@ -187,5 +147,4 @@ theme.awesome_icon = theme_assets.awesome_icon(
 theme.icon_theme = nil
 
 return theme
-
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
