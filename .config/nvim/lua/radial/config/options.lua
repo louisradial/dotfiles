@@ -9,6 +9,8 @@ o.number = true
 o.relativenumber = true
 o.cursorline = true
 -- o.showmatch = true
+
+-- no need to show modes with lualine
 o.showmode = false
 
 -- indenting

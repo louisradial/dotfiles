@@ -16,6 +16,12 @@ map("n", "k", "gk")
 map('n', '<leader>o', 'o<Esc>', { desc = 'Insert new line below the cursor and exit Insert mode'})
 map('n', '<leader>O', 'O<Esc>', { desc = 'Insert new line above the cursor and exit Insert mode'})
 
+-- move to window using ctrl hjkl
+map('n', '<C-h>', '<C-w>h', {desc = 'Go to the left window'})
+map('n', '<C-j>', '<C-w>j', {desc = 'Go to the lower window'})
+map('n', '<C-k>', '<C-w>k', {desc = 'Go to the upper window'})
+map('n', '<C-l>', '<C-w>l', {desc = 'Go to the right window'})
+
 -- normal current line move up/down
 map('n', '<A-j>', ":m .+1<CR>==", {silent = true})
 map('n', '<A-k>', ":m .-2<CR>==", {silent = true})

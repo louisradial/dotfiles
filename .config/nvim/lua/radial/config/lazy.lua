@@ -22,7 +22,6 @@ require('lazy').setup( "radial.plugins",
         debug = false,
         ui = {
             border = 'rounded',
-            -- border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│", },
         },
     }
 )
