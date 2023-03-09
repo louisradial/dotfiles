@@ -18,37 +18,11 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
-local theme = require("theme")
+require("theme")
 
--- {{{ Error handling
--- Check if awesome encountered an error during startup and fell back to
--- another config (This code will only ever execute for the fallback config)
-if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
-        title = "Oops, there were errors during startup!",
-        text = awesome.startup_errors })
-end
-
--- Handle runtime errors after startup
-do
-    local in_error = false
-    awesome.connect_signal("debug::error", function(err)
-        -- Make sure we don't go into an endless error loop
-        if in_error then return end
-        in_error = true
-
-        naughty.notify({ preset = naughty.config.presets.critical,
-            title = "Oops, an error happened!",
-            text = tostring(err) })
-        in_error = false
-    end)
-end
--- }}}
+require("ui.notifications")
 
 -- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
-
 -- This is used later as the default terminal and editor to run.
 local terminal = "kitty"
 local editor = os.getenv("EDITOR") or "nvim" -- change this to get info from os configuration
@@ -651,6 +625,7 @@ client.connect_signal("manage", function(c)
     end
 end)
 
+-- ui/titlebar.lua
 -- Add a titlebar if titlebars_enabled is set to true in the rules.
 client.connect_signal("request::titlebars", function(c)
     -- buttons for the titlebar
