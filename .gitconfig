@@ -1,0 +1,7 @@
+[user]
+	name = Louis Bergamo Radial
+	email = louis.radial@usp.br
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
