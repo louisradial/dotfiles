@@ -116,45 +116,45 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Create a textclock widget
 local mytextclock = wibox.widget.textclock()
 
--- Create a wibox for each screen and add it
-local taglist_buttons = gears.table.join(
-    awful.button({}, 1, function(t) t:view_only() end),
-    awful.button({ modkey }, 1, function(t)
-        if client.focus then
-            client.focus:move_to_tag(t)
-        end
-    end),
-    awful.button({}, 3, awful.tag.viewtoggle),
-    awful.button({ modkey }, 3, function(t)
-        if client.focus then
-            client.focus:toggle_tag(t)
-        end
-    end),
-    awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
-    awful.button({}, 5, function(t) awful.tag.viewprev(t.screen) end)
-)
+-- -- Create a wibox for each screen and add it
+-- local taglist_buttons = gears.table.join(
+--     awful.button({}, 1, function(t) t:view_only() end),
+--     awful.button({ modkey }, 1, function(t)
+--         if client.focus then
+--             client.focus:move_to_tag(t)
+--         end
+--     end),
+--     awful.button({}, 3, awful.tag.viewtoggle),
+--     awful.button({ modkey }, 3, function(t)
+--         if client.focus then
+--             client.focus:toggle_tag(t)
+--         end
+--     end),
+--     awful.button({}, 4, function(t) awful.tag.viewnext(t.screen) end),
+--     awful.button({}, 5, function(t) awful.tag.viewprev(t.screen) end)
+-- )
 
-local tasklist_buttons = gears.table.join(
-    awful.button({}, 1, function(c)
-        if c == client.focus then
-            c.minimized = true
-        else
-            c:emit_signal(
-                "request::activate",
-                "tasklist",
-                { raise = true }
-            )
-        end
-    end),
-    awful.button({}, 3, function()
-        awful.menu.client_list({ theme = { width = 250 } })
-    end),
-    awful.button({}, 4, function()
-        awful.client.focus.byidx(1)
-    end),
-    awful.button({}, 5, function()
-        awful.client.focus.byidx(-1)
-    end))
+-- local tasklist_buttons = gears.table.join(
+--     awful.button({}, 1, function(c)
+--         if c == client.focus then
+--             c.minimized = true
+--         else
+--             c:emit_signal(
+--                 "request::activate",
+--                 "tasklist",
+--                 { raise = true }
+--             )
+--         end
+--     end),
+--     awful.button({}, 3, function()
+--         awful.menu.client_list({ theme = { width = 250 } })
+--     end),
+--     awful.button({}, 4, function()
+--         awful.client.focus.byidx(1)
+--     end),
+--     awful.button({}, 5, function()
+--         awful.client.focus.byidx(-1)
+--     end))
 
 local function set_wallpaper(s)
     -- Wallpaper
@@ -164,7 +164,7 @@ local function set_wallpaper(s)
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
-        gears.wallpaper.maximized(wallpaper, s, true)
+        gears.wallpaper.maximized(wallpaper, s, false)
     end
 end
 
@@ -322,7 +322,7 @@ local update_vol_widget = function(volume_level, volume_mute)
     vol_widget.text = volume_icon .. volume_level
 end
 
-local vo, volume_signal = awful.widget.watch(
+local _, volume_signal = awful.widget.watch(
     'bash -c "pactl list sinks | awk \'NR==9 {print $2} NR==10 {print $5,$12}\'"', 7200,
     function(_, stdout)
         local words = {}
@@ -513,11 +513,11 @@ awful.screen.connect_for_each_screen(function(s)
         widget = wibox.container.margin,
     })
     -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist {
-        screen  = s,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons
-    }
+    -- s.mytaglist = awful.widget.taglist {
+    --     screen  = s,
+    --     filter  = awful.widget.taglist.filter.all,
+    --     buttons = taglist_buttons
+    -- }
     s.mytaglist = require("taglist")(s)
 
     -- Create a tasklist widget
@@ -623,9 +623,9 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
-    awful.button({}, 3, function() mymainmenu:toggle() end),
-    awful.button({}, 4, awful.tag.viewnext),
-    awful.button({}, 5, awful.tag.viewprev)
+    awful.button({}, 3, function() mymainmenu:toggle() end)
+    -- awful.button({}, 4, awful.tag.viewnext),
+    -- awful.button({}, 5, awful.tag.viewprev)
 ))
 -- }}}
 

@@ -7,7 +7,7 @@ local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
 local theme = require("theme")
 ------------------------------------
-
+local modkey = "Mod4"
 local get_taglist = function(s)
 	-- Taglist buttons
 	local taglist_buttons = gears.table.join(
@@ -16,12 +16,12 @@ local get_taglist = function(s)
 		awful.button({ modkey }, 1, function(t)
 			if client.focus then client.focus:move_to_tag(t) end
 		end), awful.button({}, 3, awful.tag.viewtoggle),
-		awful.button({ modkey }, 3, function(t)
-			if client.focus then client.focus:toggle_tag(t) end
-		end), awful.button({}, 4, function(t)
-			awful.tag.viewnext(t.screen)
-		end), awful.button({}, 5, function(t)
-			awful.tag.viewprev(t.screen)
+		awful.button({ modkey }, 3, function(_)
+			-- if client.focus then client.focus:toggle_tag(t) end
+		end), awful.button({}, 4, function(_)
+			-- awful.tag.viewnext(t.screen)
+		end), awful.button({}, 5, function(_)
+			-- awful.tag.viewprev(t.screen)
 		end))
 
 	----------------------------------------------------------------------
