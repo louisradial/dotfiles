@@ -29,8 +29,8 @@ return {
                 ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                 ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
                 ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-                ["<Tab>"] = nil,
-                ["<S-Tab>"] = nil,
+                -- ["<Tab>"] = nil,
+                -- ["<S-Tab>"] = nil,
             }),
 
             window = {
@@ -40,7 +40,7 @@ return {
             sources = cmp.config.sources({
                 { name = "nvim_lsp", keyword_length = 4 },
                 { name = "nvim_lua", keyword_length = 5 },
-                { name = "luasnip", keyword_lengt = 2 },
+                { name = "luasnip", keyword_length = 2 },
                 { name = "buffer", keyword_length = 5 },
                 { name = "path", keyword_length = 5 },
             }),
