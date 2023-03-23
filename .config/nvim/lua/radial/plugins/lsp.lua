@@ -28,7 +28,7 @@ return {
             'rust_analyzer',
         })
 
-        lsp.configure('lua_ls', {
+        lsp.configure('lua-language-server', {
             settings = {
                 Lua = {
                     diagnostics = {
