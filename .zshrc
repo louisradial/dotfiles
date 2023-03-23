@@ -28,7 +28,7 @@ else
 fi
 
 alias zshconfig="nvim ~/.zshrc"
-alias config='git --git-dir=$HOME/.config/dotfiles --work-tree=$HOME'
+alias config='git --git-dir=$HOME/.config/dotfiles.git --work-tree=$HOME'
 alias l="exa -l --icons --group-directories-first"
 alias la="exa -a --icons --group-directories-first"
 alias ls="exa --icons --group-directories-first"
