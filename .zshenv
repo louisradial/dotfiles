@@ -1,3 +1,4 @@
 typeset -U path PATH
-path=($HOME/.local/bin $HOME/.cargo/env $path)
+path=($HOME/.local/bin $path)
 export PATH
+. $HOME/.cargo/env 
