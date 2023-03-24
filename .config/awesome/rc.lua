@@ -18,7 +18,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
-local theme = require("theme")
+require("theme")
+local color = require("theme.colors")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -51,7 +52,7 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua") -- gears.filesystem.get_themes_dir() .. "default/theme.lua")
+-- beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua") -- gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 local terminal = "kitty"
@@ -67,16 +68,16 @@ local modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
-    awful.layout.suit.tile.left,
+    -- awful.layout.suit.tile.left,
     awful.layout.suit.tile,
     awful.layout.suit.floating,
     -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
     -- awful.layout.suit.fair,
     -- awful.layout.suit.fair.horizontal,
-    -- awful.layout.suit.spiral,
+    awful.layout.suit.spiral,
     -- awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
+    -- awful.layout.suit.max,
     -- awful.layout.suit.max.fullscreen,
     -- awful.layout.suit.magnifier,
     -- awful.layout.suit.corner.nw,
@@ -89,16 +90,16 @@ awful.layout.layouts = {
 -- {{{ Menu
 -- Create a launcher widget and a main menu
 local myawesomemenu = {
-    { "hotkeys",     function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-    { "manual",      terminal .. " -e man awesome" },
-    { "edit config", editor_cmd .. " " .. awesome.conffile },
-    { "restart",     awesome.restart },
-    { "quit",        function() awesome.quit() end },
+    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+    { "manual",  terminal .. " -e man awesome" },
+    { "config",  editor_cmd .. " " .. awesome.conffile },
+    { "restart", awesome.restart },
+    { "quit",    function() awesome.quit() end },
 }
 
 local mymainmenu = awful.menu({
     items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-        { "open terminal", terminal }
+        { "terminal", terminal }
     }
 })
 
@@ -174,8 +175,8 @@ screen.connect_signal("property::geometry", set_wallpaper)
 ---------------------------------
 -- Custom Widgets
 ---------------------------------
-local widget_fg = theme.color_palette.subtext0
-local widget_bg = theme.color_palette.surface0
+local widget_fg = color.subtext0
+local widget_bg = color.surface0
 
 -- -- Storage Widget
 -- local storage_update_time = 7200
@@ -232,7 +233,7 @@ local widget_bg = theme.color_palette.surface0
 --                 widget = wibox.container.margin,
 --             },
 --             shape = gears.shape.rounded_bar,
---             fg = theme.color_palette.lavender,
+--             fg = color.lavender,
 --             bg = widget_bg,
 --             forced_width = 70, -- 140,
 --             widget = wibox.container.background
@@ -289,7 +290,7 @@ end
 --                 widget = wibox.container.margin
 --             },
 --             shape  = gears.shape.rounded_bar,
---             fg     = theme.color_palette.peach,
+--             fg     = color.peach,
 --             bg     = widget_bg,
 --             widget = wibox.container.background
 --         },
@@ -349,7 +350,7 @@ container_vol_widget = {
                 widget = wibox.container.margin
             },
             shape  = gears.shape.rounded_bar,
-            fg     = theme.color_palette.red,
+            fg     = color.red,
             bg     = widget_bg,
             widget = wibox.container.background
         },
@@ -416,7 +417,7 @@ container_vol_widget = {
 --                 widget = wibox.container.margin
 --             },
 --             shape  = gears.shape.rounded_bar,
---             fg     = theme.color_palette.green,
+--             fg     = color.green,
 --             bg     = widget_bg,
 --             widget = wibox.container.background
 --         },
@@ -445,7 +446,7 @@ local container_arch_widget = {
         bottom = 2,
         widget = wibox.container.margin
     },
-    fg     = theme.color_palette.mauve,
+    fg     = color.mauve,
     widget = wibox.container.background
 }
 
@@ -464,7 +465,7 @@ local container_clock_widget = {
                 widget = wibox.container.margin
             },
             shape  = gears.shape.rounded_bar,
-            fg     = theme.color_palette.pink,
+            fg     = color.pink,
             bg     = widget_bg,
             widget = wibox.container.background
         },
@@ -526,7 +527,7 @@ awful.screen.connect_for_each_screen(function(s)
         filter          = awful.widget.tasklist.filter.currenttags,
         style           = {
             -- shape_border_width = 0,
-            -- shape_border_color = theme.color_palette.lavender,
+            -- shape_border_color = color.lavender,
             -- shape = gears.shape.rounded_bar,
             font = "Iosevka Nerd Font 12"
         },
@@ -560,10 +561,10 @@ awful.screen.connect_for_each_screen(function(s)
                     -- bottom = 0,
                     widget = wibox.container.margin,
                 },
-                fg                 = widget_fg,
-                bg                 = widget_bg,
-                shape              = gears.shape.rounded_bar,
-                widget             = wibox.container.background,
+                fg     = widget_fg,
+                bg     = widget_bg,
+                shape  = gears.shape.rounded_bar,
+                widget = wibox.container.background,
             },
             left   = 0,
             right  = 0,
@@ -624,8 +625,8 @@ end)
 -- {{{ Mouse bindings
 root.buttons(gears.table.join(
     awful.button({}, 3, function() mymainmenu:toggle() end)
-    -- awful.button({}, 4, awful.tag.viewnext),
-    -- awful.button({}, 5, awful.tag.viewprev)
+-- awful.button({}, 4, awful.tag.viewnext),
+-- awful.button({}, 5, awful.tag.viewprev)
 ))
 -- }}}
 
@@ -1025,7 +1026,7 @@ local autorun = true
 local autorun_apps = {
     -- "picom --fade-in-step=1 --fade-out-step=1 --fade-delta=0",
     -- "nitrogen --restore",
-    "gwe --hide-window"
+    -- "gwe --hide-window"
 }
 if autorun then
     for app = 1, #autorun_apps do

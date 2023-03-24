@@ -2,10 +2,9 @@ local awful = require("awful")
 local gears = require("gears")
 local gfs = gears.filesystem
 local wibox = require("wibox")
-local beautiful = require("beautiful")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
-local theme = require("theme")
+local color = require("theme.colors")
 ------------------------------------
 local modkey = "Mod4"
 local get_taglist = function(s)
@@ -27,13 +26,13 @@ local get_taglist = function(s)
 	----------------------------------------------------------------------
 
 	local unfocus_icon = " "
-	local unfocus_color = theme.color_palette.lavender
+	local unfocus_color = color.lavender
 
 	local empty_icon = " "
-	local empty_color = theme.color_palette.surface2
+	local empty_color = color.surface2
 
 	local focus_icon = " "
-	local focus_color = theme.color_palette.mauve
+	local focus_color = color.mauve
 
 	----------------------------------------------------------------------
 
