@@ -2,7 +2,7 @@
 # /home/radial/.nvidia-settings-rc
 #
 # Configuration file for nvidia-settings - the NVIDIA Settings utility
-# Generated on Sat Mar 11 01:23:19 2023
+# Generated on Thu Mar 23 19:27:29 2023
 #
 
 # ConfigProperties:
@@ -33,6 +33,7 @@ Timer = Memory_Used_(GPU_0),Yes,3000
 0/ShowGSYNCVisualIndicator=0
 0/ShowVRRVisualIndicator=0
 0/ShowGraphicsVisualIndicator=0
+0/XVideoSyncToDisplayID=DP-2
 [DPY:DVI-D-0]/Dithering=0
 [DPY:DVI-D-0]/DitheringMode=0
 [DPY:DVI-D-0]/DitheringDepth=0
