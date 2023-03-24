@@ -10,7 +10,6 @@ awful.util                  = require("awful.util")
 local dpi                   = xresources.apply_dpi
 local themes_path           = gfs.get_themes_dir()
 local config_path           = awful.util.getdir("config") .. "theme/"
-print(config_path)
 
 local theme                 = {}
 -- theme.color_palette         = color
