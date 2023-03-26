@@ -17,3 +17,30 @@ set termguicolors
 set noshowmode
 let g:lightline = {'colorscheme': 'catppuccin_mocha'}
 colorscheme catppuccin_mocha
+
+" g.mapleader = ' '
+" g.maplocalleader = ' '
+
+" number lines and relative number lines
+set number
+set relativenumber
+set cursorline
+" set showmatch
+
+ " indenting
+set breakindent
+set smartindent
+set autoindent
+set shiftwidth=4
+set tabstop=4
+set softtabstop=4
+set expandtab
+set smarttab
+
+ " search highlight
+set ignorecase
+set smartcase
+set nohlsearch
+set incsearch
+
+set scrolloff=8
