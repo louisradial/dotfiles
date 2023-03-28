@@ -21,11 +21,7 @@ compinit
 # End of lines added by compinstall
 
 LANG=en_US.UTF-8
-if [ "$TERM" = "linux" ]; then
-    export EDITOR='vim'
-else
-    export EDITOR='nvim'
-fi
+export EDITOR='nvim'
 
 alias zshconfig="nvim ~/.zshrc"
 alias config='git --git-dir=$HOME/.config/dotfiles.git --work-tree=$HOME'
