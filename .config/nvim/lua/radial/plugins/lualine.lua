@@ -139,7 +139,7 @@ return {
         }
 
         local function getLspName()
-            local msg = 'No Active Lsp'
+            local msg = 'No LSP'
             local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
             local clients = vim.lsp.get_active_clients()
             if next(clients) == nil then
@@ -205,7 +205,8 @@ return {
                 lualine_a = { modes, },
                 lualine_b = { space, },
                 lualine_c = { filename, filetype, space, branch, diff, },
-                lualine_x = { encoding, fileformat, space, },
+                lualine_x = {},
+                -- lualine_x = { encoding, fileformat, space, },
                 lualine_y = { progress, location, space, },
                 lualine_z = { diagnostics, lsp, }
             },
