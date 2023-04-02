@@ -2,7 +2,7 @@
 # /home/radial/.nvidia-settings-rc
 #
 # Configuration file for nvidia-settings - the NVIDIA Settings utility
-# Generated on Thu Mar 23 19:27:29 2023
+# Generated on Sun Apr  2 18:40:44 2023
 #
 
 # ConfigProperties:
@@ -23,10 +23,10 @@ Timer = Memory_Used_(GPU_0),Yes,3000
 0/FSAA=0
 0/TextureClamping=1
 0/FXAA=0
-0/AllowFlipping=1
+0/AllowFlipping=0
 0/FSAAAppControlled=1
 0/LogAnisoAppControlled=1
-0/OpenGLImageSettings=1
+0/OpenGLImageSettings=3
 0/FSAAAppEnhanced=0
 0/AllowGSYNC=1
 0/AllowVRR=1
