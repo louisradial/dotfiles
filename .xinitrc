@@ -32,6 +32,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-exec nvidia-settings -l
+exec nvidia-settings -l &
 exec nfancurve -c ~/.config/nvidia/nfancurve.conf &
 exec awesome
