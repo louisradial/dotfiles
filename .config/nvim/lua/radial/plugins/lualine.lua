@@ -9,34 +9,24 @@ return {
 
         local theme = {
             normal = {
-                a = { bg = colors.blue, fg = colors.black },
-                b = { bg = colors.fg_gutter, fg = colors.blue },
+                a = { bg = colors.blue, fg = colors.bg },
+                b = { bg = colors.bg, fg = colors.blue },
                 c = { bg = colors.bg, fg = colors.fg_sidebar },
             },
             insert = {
-                a = { bg = colors.green, fg = colors.black },
-                b = { bg = colors.fg_gutter, fg = colors.green },
+                a = { bg = colors.green, fg = colors.bg },
             },
             command = {
-                a = { bg = colors.yellow, fg = colors.black },
-                b = { bg = colors.fg_gutter, fg = colors.yellow },
+                a = { bg = colors.yellow, fg = colors.bg },
             },
             visual = {
-                a = { bg = colors.magenta, fg = colors.black },
-                b = { bg = colors.fg_gutter, fg = colors.magenta },
+                a = { bg = colors.magenta, fg = colors.bg },
             },
             replace = {
-                a = { bg = colors.red, fg = colors.black },
-                b = { bg = colors.fg_gutter, fg = colors.red },
+                a = { bg = colors.red, fg = colors.bg },
             },
             terminal = {
-                a = { bg = colors.green1, fg = colors.black },
-                b = { bg = colors.fg_gutter, fg = colors.green1 },
-            },
-            inactive = {
-                a = { bg = colors.bg, fg = colors.blue },
-                b = { bg = colors.bg, fg = colors.fg_gutter },
-                c = { bg = colors.bg, fg = colors.fg_gutter },
+                a = { bg = colors.green1, fg = colors.bg },
             },
         }
 
@@ -78,11 +68,11 @@ return {
                 alpha = 'Alpha',
                 toggleterm = 'terminal',
                 NvimTree = 'File Tree',
-            }, -- Shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
+            },                       -- Shows specific buffer name for that filetype ( { `filetype` = `buffer_name`, ... } )
             symbols = {
-                modified = ' ●', -- Text to show when the buffer is modified
+                modified = ' ●',   -- Text to show when the buffer is modified
                 alternate_file = '', -- Text to show to identify the alternate file
-                directory = '', -- Text to show when the buffer is a directory
+                directory = '',   -- Text to show when the buffer is a directory
             },
             padding = { left = 1, right = 1 },
         }
