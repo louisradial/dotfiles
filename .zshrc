@@ -33,6 +33,21 @@ alias tree="exa --icons --group-directories-first -la -T -L"
 alias cat="bat --paging=never"
 alias icat="kitty +kitten icat"
 
+function copypath {
+    DIR_PATH=$(pwd)/$1
+    if [ -d "$DIR_PATH" ]; then
+        echo -n $DIR_PATH | xclip -sel clipboard;
+    else
+        echo "copypath: $DIR_PATH does not exist";
+        return 1;
+    fi
+    # echo -n $(pwd)/$1 | xclip -sel clipboard
+}
+
+function mkdircd {
+    mkdir -p $1 && cd $1
+}
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 if [ "$TERM" = "linux" ]; then
   [[ ! -f ~/.p10k-tty.zsh ]] || source ~/.p10k-tty.zsh
