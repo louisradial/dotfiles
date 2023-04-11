@@ -399,8 +399,13 @@ local globalkeys = gears.table.join(
         { description = "restore minimized", group = "client" }),
 
     -- Prompt
-    awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
-        { description = "run prompt", group = "launcher" }),
+    -- awful.key({ modkey }, "r", function() awful.screen.focused().mypromptbox:run() end,
+    --     { description = "run prompt", group = "launcher" }),
+    awful.key({ modkey }, "r",
+        function()
+            awful.spawn.with_shell("rofi -matching fuzzy -show run")
+        end,
+        {description = "rofi launcher", group = "launcher"}),
 
     awful.key({ modkey }, "x",
         function()
@@ -425,6 +430,11 @@ local globalkeys = gears.table.join(
     -- 	function() awful.spawn("scrot -s -q 100 /home/sv/pictures/screenshots/%Y-%m-%d_$wx$h.png") end,
     -- 	{ description = "Take screenshot selection", group = "screen" }),
 
+    awful.key({"Shift"}, "Print",
+        function()
+            awful.spawn.with_shell("maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png")
+        end,
+        { description = "Take screenshot of current window", group = "screen" }),
 
     -- media keys
     awful.key({}, "XF86AudioRaiseVolume",
