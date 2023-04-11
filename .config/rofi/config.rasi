@@ -1,7 +1,9 @@
 configuration{
     modi: "run,drun,window";
+    combi-modi: "run,drun";
     show-icons: true;
     terminal: "kitty";
+    font: "Iosevka Nerd Font 16";
     drun-display-format: "{icon} {name}";
     location: 0;
     disable-history: false;
@@ -12,6 +14,4 @@ configuration{
     sidebar-mode: true;
 }
 
-//@theme "catppuccin-mocha"
-//@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
-@theme "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"
+@theme "catppuccin-mocha"
