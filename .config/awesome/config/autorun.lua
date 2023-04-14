@@ -2,7 +2,7 @@ local awful = require("awful")
 -- autorun
 local autorun = true
 local autorun_apps = {
-    -- "picom --fade-in-step=1 --fade-out-step=1 --fade-delta=0",
+    "picom",
     -- "nitrogen --restore",
     -- "gwe --hide-window"
 }
