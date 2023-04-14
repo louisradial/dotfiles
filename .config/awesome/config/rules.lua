@@ -43,10 +43,34 @@ ruled.client.connect_signal("request::rules", function()
         properties = { titlebars_enabled = false }
     }
 
-    -- -- Example: set Firefox to always map on the tag named "2" on screen 1.
+    -- chatterino and streams on the same tag
+    ruled.client.append_rule {
+        rule_any = {
+            class = { "chatterino" },
+            instance = { "mpvchatterino" }
+        },
+        properties = { screen = 2, tag = "1" }
+    }
+
+    -- Firefox on tag "1" on screen 1
+    ruled.client.append_rule {
+        rule       = { class = "firefox" },
+        properties = { screen = 1, tag = "1", switch_to_tags = true }
+    }
+
+    -- Steam on tag "2" on screen 2
+    ruled.client.append_rule {
+        rule_any   = {
+            -- instance = { "steam", "Steam" },
+            class = { "steam", "Steam" },
+        },
+        properties = { screen = 2, tag = "2", switch_to_tags = true }
+    }
+
+    -- -- Games full screen on tag "5" on screen 1
     -- ruled.client.append_rule {
-    --     rule       = { class = "Firefox" },
-    --     properties = { screen = 1, tag = "2" }
+    --     rule = {},
+    --     properties = { fullscreen = true, screen = 1, tag = "5", switch_to_tags = true }
     -- }
 end)
 
