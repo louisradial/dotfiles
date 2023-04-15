@@ -34,4 +34,5 @@ fi
 
 exec nvidia-settings -l &
 exec nfancurve -c ~/.config/nvidia/nfancurve.conf &
+exec picom &
 exec awesome

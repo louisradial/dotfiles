@@ -2,7 +2,7 @@ local awful = require("awful")
 -- autorun
 local autorun = true
 local autorun_apps = {
-    "picom",
+    -- "picom",
     -- "nitrogen --restore",
     -- "gwe --hide-window"
 }
