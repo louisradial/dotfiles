@@ -69,7 +69,7 @@ ruled.client.connect_signal("request::rules", function()
     ruled.client.append_rule {
         rule_every = {
             class = { "Steam" },
-            name = { "Steam - News", "Settings", "Friends List", "Steam - Self Updater"}
+            name = { "Steam - News", "Settings", "Friends List", "Steam - Self Updater" }
         },
         properties = { floating = true }
     }
