@@ -60,11 +60,18 @@ ruled.client.connect_signal("request::rules", function()
 
     -- Steam on tag "2" on screen 2
     ruled.client.append_rule {
-        rule_any   = {
-            -- instance = { "steam", "Steam" },
-            class = { "steam", "Steam" },
+        rule       = {
+            class = { "Steam" },
         },
         properties = { screen = 2, tag = "2", switch_to_tags = true }
+    }
+
+    -- eu4
+    ruled.client.append_rule {
+        rule = {
+            class = { "eu4" }
+        },
+        properties = { screen = 1, tag = "5", switch_to_tags = true, fullscreen = true }
     }
 
     -- -- Games full screen on tag "5" on screen 1
