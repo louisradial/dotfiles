@@ -54,7 +54,8 @@ ruled.client.connect_signal("request::rules", function()
 
     -- Firefox on tag "1" on screen 1
     ruled.client.append_rule {
-        rule       = { class = "firefox" },
+        rule = { class = "firefox" },
+        -- widget.disable-workspace-management must be set to true in firefox
         properties = { screen = 1, tag = "1", switch_to_tags = true }
     }
 
