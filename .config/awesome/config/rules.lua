@@ -69,7 +69,13 @@ ruled.client.connect_signal("request::rules", function()
     -- eu4
     ruled.client.append_rule {
         rule = {
-            class = { "eu4" }
+            class = "Paradox Launcher"
+        },
+        properties = { screen = 1, tag = "5", switch_to_tags = true }
+    }
+    ruled.client.append_rule {
+        rule = {
+            name = "Europa Universalis IV"
         },
         properties = { screen = 1, tag = "5", switch_to_tags = true, fullscreen = true }
     }
