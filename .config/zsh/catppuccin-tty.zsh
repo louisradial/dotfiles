@@ -24,6 +24,4 @@ if [ "$TERM" = "linux" ]; then
 
     printf %b '\e]P694E2D5' # set cyan to "Teal"
     printf %b '\e]PE94E2D5' # set bright cyan to "Teal"
-
-    clear
 fi
