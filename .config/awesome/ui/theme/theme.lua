@@ -21,7 +21,8 @@ theme.icon_theme                = nil
 
 theme.wallpaper_image           = false
 theme.wallpaper                 = os.getenv("HOME") .. "/Pictures/76730978_p0.png"
-theme.wallpaper_color           = color.base
+theme.wallpaper_color           = color.crust
+
 theme.archlinux_icon            = config_path .. "assets/bar/archlinux-icon.svg"
 theme.awesome_subicon           = config_path .. "assets/bar/archlinux-icon.svg"
 
