@@ -2,6 +2,7 @@ local beautiful = require("beautiful")
 local awful = require("awful")
 local gears = require("gears")
 local wibox = require("wibox")
+local colors = require("ui.theme.colors")
 
 -- local function set_wallpaper(s)
 --     -- Wallpaper
@@ -18,5 +19,9 @@ local wibox = require("wibox")
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 -- screen.connect_signal("property::geometry", set_wallpaper)
 screen.connect_signal("request::wallpaper", function(s)
-    gears.wallpaper.maximized(beautiful.wallpaper, s, false)
+    if beautiful.wallpaper_image == true then
+        gears.wallpaper.maximized(beautiful.wallpaper, s, false)
+    else
+        gears.wallpaper.set(beautiful.wallpaper_color)
+    end
 end)
