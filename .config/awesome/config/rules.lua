@@ -61,14 +61,17 @@ ruled.client.connect_signal("request::rules", function()
 
     -- Steam on tag "2" on screen 2
     ruled.client.append_rule {
-        rule = { class = "Steam", instance = "Steam" },
+        rule_any = {
+            class = { "steamwebhelper", "Steam" },
+            instance = { "steamwebhelper", "Steam" },
+        },
         properties = { screen = 2, tag = "2", switch_to_tags = true }
     }
 
     -- Steam spawns a bunch of windows, supposed to be floating, I guess
     ruled.client.append_rule {
         rule_every = {
-            class = { "Steam" },
+            class = { "steamwebhelper", "Steam" },
             name = { "Steam - News", "Settings", "Friends List", "Steam - Self Updater" }
         },
         properties = { floating = true }
