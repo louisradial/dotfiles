@@ -204,6 +204,27 @@ awful.keyboard.append_global_keybindings({
             awesome.emit_signal("volume::toggle_mute")
         end,
         { description = "Toggle Mute", group = "system" }),
+    awful.key({}, "XF86AudioPlay", 
+        function()
+            awful.spawn("mpc play")
+        end,
+        { description = "Play music", group = "MPD" }),
+    awful.key({}, "XF86AudioStop", 
+        function()
+            awful.spawn("mpc pause")
+        end,
+        { description = "Pause music", group = "MPD" }),
+    awful.key({}, "XF86AudioNext", 
+        function()
+            awful.spawn("mpc next")
+        end,
+        { description = "Next music", group = "MPD" }),
+    awful.key({}, "XF86AudioPrev", 
+        function()
+            awful.spawn("mpc prev")
+        end,
+        { description = "Previous music", group = "MPD" }),
+        
         -- awful.key({}, "XF86MonBrightnessDown",
         --     function()
         --         awesome.emit_signal("brightness::set", false)
