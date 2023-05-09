@@ -1,4 +1,4 @@
 typeset -U path PATH
 path=($HOME/.local/bin $path)
 export PATH
-. $HOME/.cargo/env 
+export QT_STYLE_OVERRIDE="kvantum"
