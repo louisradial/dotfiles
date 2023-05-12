@@ -16,16 +16,16 @@ awful.keyboard.append_global_keybindings({
         { description = "reload awesome", group = "awesome" }),
     awful.key({ modkey, "Shift" }, "q", awesome.quit,
         { description = "quit awesome", group = "awesome" }),
-    awful.key({ modkey }, "x",
-        function()
-            awful.prompt.run {
-                prompt       = "Run Lua code: ",
-                textbox      = awful.screen.focused().mypromptbox.widget,
-                exe_callback = awful.util.eval,
-                history_path = awful.util.get_cache_dir() .. "/history_eval"
-            }
-        end,
-        { description = "lua execute prompt", group = "awesome" }),
+    -- awful.key({ modkey }, "x",
+    --     function()
+    --         awful.prompt.run {
+    --             prompt       = "Run Lua code: ",
+    --             textbox      = awful.screen.focused().mypromptbox.widget,
+    --             exe_callback = awful.util.eval,
+    --             history_path = awful.util.get_cache_dir() .. "/history_eval"
+    --         }
+    --     end,
+    --     { description = "lua execute prompt", group = "awesome" }),
     awful.key({ modkey, }, "Return", function() awful.spawn(terminal) end,
         { description = "open a terminal", group = "launcher" }),
     awful.key({ modkey }, "r", function() awful.spawn("rofi -matching fuzzy -show run") end,
@@ -204,27 +204,27 @@ awful.keyboard.append_global_keybindings({
             awesome.emit_signal("volume::toggle_mute")
         end,
         { description = "Toggle Mute", group = "system" }),
-    awful.key({}, "XF86AudioPlay", 
+    awful.key({}, "XF86AudioPlay",
         function()
             awful.spawn("mpc play")
         end,
         { description = "Play music", group = "MPD" }),
-    awful.key({}, "XF86AudioStop", 
+    awful.key({}, "XF86AudioStop",
         function()
             awful.spawn("mpc pause")
         end,
         { description = "Pause music", group = "MPD" }),
-    awful.key({}, "XF86AudioNext", 
+    awful.key({}, "XF86AudioNext",
         function()
             awful.spawn("mpc next")
         end,
         { description = "Next music", group = "MPD" }),
-    awful.key({}, "XF86AudioPrev", 
+    awful.key({}, "XF86AudioPrev",
         function()
             awful.spawn("mpc prev")
         end,
         { description = "Previous music", group = "MPD" }),
-        
+
         -- awful.key({}, "XF86MonBrightnessDown",
         --     function()
         --         awesome.emit_signal("brightness::set", false)
