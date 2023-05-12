@@ -1,14 +1,29 @@
 GIMP Palette
-Name: Xournal Catppuccin
-#
+Name: Xournal Catppuccin-Mocha
+# pick 11
+# 245 224 220 Rosewater
+242 205 205 Flamingo
 245 194 231 Pink
 203 166 247 Mauve
-180 190 254 Lavender
-148 226 213 Teal
-137 180 250 Blue
-108 112 134 Overlay0
 243 139 168 Red
-255 0 255 Magenta
-135 179 135 Peach
+235 160 172 Maroon
+250 179 135 Peach
 249 226 175 Yellow
-205 214 244 Text
+# 166 227 161 Green
+148 226 213 Teal
+# 137 220 235 Sky
+116 199 254 Sapphire
+137 180 250 Blue
+180 190 254 Lavender
+# 205 214 244 Text
+# 186 194 222 Subtext1
+# 166 173 200 Subtext0
+# 147 153 178 Overlay2
+# 127 132 156 Overlay1
+# 108 112 134 Overlay0
+# 088 091 112 Surface2
+# 069 071 090 Surface1
+# 049 050 068 Surface0
+# 030 030 046 Base
+# 024 024 037 Mantle
+# 017 017 027 Crust
