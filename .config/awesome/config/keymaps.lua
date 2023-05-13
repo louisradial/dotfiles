@@ -5,6 +5,7 @@ require("awful.hotkeys_popup.keys")
 local user_variables = require("config.variables")
 local modkey = user_variables.modkey
 local terminal = user_variables.terminal
+local naughty = require("naughty")
 
 -- General Awesome keys
 awful.keyboard.append_global_keybindings({
@@ -204,6 +205,11 @@ awful.keyboard.append_global_keybindings({
             awesome.emit_signal("volume::toggle_mute")
         end,
         { description = "Toggle Mute", group = "system" }),
+    awful.key({}, "XF86Tools",
+        function()
+            awful.spawn(terminal .. " --class ncmpcpp -e ncmpcpp")
+        end,
+        { description = "Launch music player", group = "MPD" }),
     awful.key({}, "XF86AudioPlay",
         function()
             awful.spawn("mpc play")

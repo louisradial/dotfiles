@@ -91,6 +91,14 @@ ruled.client.connect_signal("request::rules", function()
         properties = { screen = 1, tag = "5", switch_to_tags = true, fullscreen = true }
     }
 
+    -- ncmpcpp
+    ruled.client.append_rule {
+        rule = {
+            class = "ncmpcpp",
+        },
+        properties = { screen = 2, tag = "5", switch_to_tags = true }
+    }
+
     -- -- Games full screen on tag "5" on screen 1
     -- ruled.client.append_rule {
     --     rule = {},
