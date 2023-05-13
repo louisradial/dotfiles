@@ -5,7 +5,7 @@
   <property name="minimumPressure" value="0.05"/>
   <property name="pressureMultiplier" value="1"/>
   <property name="zoomGesturesEnabled" value="true"/>
-  <property name="selectedToolbar" value="Portrait"/>
+  <property name="selectedToolbar" value="Portrait Copy"/>
   <property name="lastSavePath" value="/home/radial/Documents/IFUSP/2023-1/MAT0216/exercícios/lista1"/>
   <property name="lastOpenPath" value="/home/radial/Downloads"/>
   <property name="lastImagePath" value=""/>
@@ -13,14 +13,14 @@
   <property name="edgePanMaxMult" value="5"/>
   <property name="zoomStep" value="10"/>
   <property name="zoomStepScroll" value="2"/>
-  <property name="displayDpi" value="72"/>
+  <property name="displayDpi" value="92"/>
   <property name="mainWndWidth" value="1908"/>
   <property name="mainWndHeight" value="1034"/>
   <property name="maximized" value="false"/>
   <property name="showToolbar" value="true"/>
   <property name="showSidebar" value="true"/>
   <property name="sidebarWidth" value="150"/>
-  <property name="sidebarNumberingStyle" value="1"/>
+  <property name="sidebarNumberingStyle" value="2"/>
   <property name="sidebarOnRight" value="false"/>
   <property name="scrollbarOnLeft" value="false"/>
   <property name="menubarVisible" value="true"/>
@@ -43,19 +43,19 @@
   <!--Which GUI elements are shown in presentation view mode, separated by a colon (,)-->
   <property name="presentationViewModeAttributes" value="goFullscren,showToolbar"/>
   <!--The cursor icon used with a stylus, allowed values are "none", "dot", "big", "arrow"-->
-  <property name="stylusCursorType" value="big"/>
+  <property name="stylusCursorType" value="dot"/>
   <!--The eraser cursor visibility used with a stylus, allowed values are "never", "always", "hover", "touch"-->
   <property name="eraserVisibility" value="always"/>
   <!--The icon theme, allowed values are "iconsColor", "iconsLucide"-->
   <property name="iconTheme" value="iconsColor"/>
   <property name="highlightPosition" value="false"/>
-  <property name="cursorHighlightColor" value="2164260608"/>
-  <property name="cursorHighlightBorderColor" value="2147483903"/>
-  <property name="cursorHighlightRadius" value="30"/>
+  <property name="cursorHighlightColor" value="2160830199"/>
+  <property name="cursorHighlightBorderColor" value="2163913607"/>
+  <property name="cursorHighlightRadius" value="3"/>
   <property name="cursorHighlightBorderWidth" value="0"/>
   <property name="darkTheme" value="true"/>
   <property name="useStockIcons" value="false"/>
-  <property name="disableScrollbarFadeout" value="false"/>
+  <property name="disableScrollbarFadeout" value="true"/>
   <!--Hides scroolbars in the main window, allowed values: "none", "horizontal", "vertical", "both"-->
   <property name="scrollbarHideType" value="none"/>
   <property name="autoloadMostRecent" value="false"/>
@@ -91,7 +91,7 @@
   <property name="eagerPageCleanup" value="true"/>
   <!--Config for new pages-->
   <property name="pageTemplate" value="xoj/template&#10;copyLastPageSettings=true&#10;size=595.275591x841.889764&#10;backgroundType=lined&#10;backgroundColor=#ffffff&#10;"/>
-  <property name="sizeUnit" value=""/>
+  <property name="sizeUnit" value="cm"/>
   <property name="audioFolder" value=""/>
   <property name="audioInputDevice" value="-1"/>
   <property name="audioOutputDevice" value="-1"/>
@@ -112,7 +112,7 @@
   <property name="inputSystemTPCButton" value="false"/>
   <property name="inputSystemDrawOutsideWindow" value="true"/>
   <property name="preferredLocale" value=""/>
-  <property name="stabilizerAveragingMethod" value="0"/>
+  <property name="stabilizerAveragingMethod" value="2"/>
   <property name="stabilizerPreprocessor" value="0"/>
   <property name="stabilizerBuffersize" value="20"/>
   <property name="stabilizerSigma" value="0.5"/>
@@ -135,9 +135,9 @@
   <property name="font" font="Sans" size="12"/>
   <data name="buttonConfig">
     <data name="default">
-      <attribute name="color" type="hex" value="ff000000"/>
+      <attribute name="color" type="hex" value="ffcba6f7"/>
       <attribute name="drawingType" type="string" value="default"/>
-      <attribute name="size" type="string" value="thin"/>
+      <attribute name="size" type="string" value="medium"/>
       <attribute name="tool" type="string" value="pen"/>
     </data>
     <data name="eraser">
@@ -236,7 +236,7 @@
       <attribute name="drawingType" type="string" value="default"/>
     </data>
     <data name="pen">
-      <attribute name="color" type="hex" value="89dceb"/>
+      <attribute name="color" type="hex" value="cba6f7"/>
       <attribute name="drawingType" type="string" value="default"/>
       <attribute name="fill" type="int" value="0"/>
       <attribute name="fillAlpha" type="int" value="128"/>
