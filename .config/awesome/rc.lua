@@ -21,7 +21,7 @@ require("awful.autofocus")
 require("ui.theme")
 
 require("ui.notifications")
-require("signals.volume")
+require("signals")
 
 -- some application icons were looking like shit before this, so...
 awesome.set_preferred_icon_size(64) -- greater than 16 already looks fine.

@@ -1,11 +1,13 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
+local helpers = require("helpers")
 
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function(c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
     -- if not awesome.startup then awful.client.setslave(c) end
+    -- c.shape = helpers.mkroundedrect(3 * beautiful.useless_gap)
 
     if awesome.startup
         and not c.size_hints.user_position

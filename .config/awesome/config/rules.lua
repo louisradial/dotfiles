@@ -62,8 +62,8 @@ ruled.client.connect_signal("request::rules", function()
     -- Steam on tag "2" on screen 2
     ruled.client.append_rule {
         rule_any = {
-            class = { "steamwebhelper", "Steam" },
-            instance = { "steamwebhelper", "Steam" },
+            class = { "steamwebhelper", "Steam", "steam" },
+            instance = { "steamwebhelper", "Steam", "steam" },
         },
         properties = { screen = 2, tag = "2", switch_to_tags = true }
     }
@@ -74,7 +74,13 @@ ruled.client.connect_signal("request::rules", function()
             class = { "steamwebhelper", "Steam" },
             name = { "Steam - News", "Settings", "Friends List", "Steam - Self Updater" }
         },
-        properties = { floating = true }
+        properties = { floating = true, screen=2, tag="2" }
+    }
+    ruled.client.append_rule {
+        rule = {
+            name = "Steam"
+        },
+        properties = { floating = true, screen=2, tag = "2"}
     }
 
     -- eu4
