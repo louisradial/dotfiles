@@ -65,22 +65,25 @@ ruled.client.connect_signal("request::rules", function()
             class = { "steamwebhelper", "Steam", "steam" },
             instance = { "steamwebhelper", "Steam", "steam" },
         },
-        properties = { screen = 2, tag = "2", switch_to_tags = true }
+        properties = { floating = false, screen = 2, tag = "2", switch_to_tags = true }
     }
 
     -- Steam spawns a bunch of windows, supposed to be floating, I guess
     ruled.client.append_rule {
         rule_every = {
             class = { "steamwebhelper", "Steam" },
-            name = { "Steam - News", "Settings", "Friends List", "Steam - Self Updater" }
+            name = { "Special Offers", "Steam - News", "Settings", "Friends List", "Steam - Self Updater" }
         },
-        properties = { floating = true, screen=2, tag="2" }
+        properties = { floating = true, screen = 2, tag = "2" }
     }
     ruled.client.append_rule {
         rule = {
             name = "Steam"
         },
-        properties = { floating = true, screen=2, tag = "2"}
+        except_any = {
+            class = { "steam", "Steam" }
+        },
+        properties = { floating = true, screen = 2, tag = "2" }
     }
 
     -- eu4
