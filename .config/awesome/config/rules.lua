@@ -100,6 +100,14 @@ ruled.client.connect_signal("request::rules", function()
         properties = { screen = 1, tag = "5", switch_to_tags = true, fullscreen = true }
     }
 
+    -- the witcher 3
+    ruled.client.append_rule {
+        rule_any = {
+            name = { "REDlauncher", "The Witcher 3" }
+        },
+        properties = { screen = 1, tag = "5", switch_to_tags = true }
+    }
+
     -- ncmpcpp
     ruled.client.append_rule {
         rule = {
