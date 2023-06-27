@@ -116,6 +116,14 @@ ruled.client.connect_signal("request::rules", function()
         properties = { screen = 2, tag = "5", switch_to_tags = true }
     }
 
+    -- xournalpp
+    ruled.client.append_rule {
+        rule = {
+            class = "Xournalpp",
+        },
+        properties = { screen = 1, tag = "2", switch_to_tags = true, maximized = false }
+    }
+
     -- -- Games full screen on tag "5" on screen 1
     -- ruled.client.append_rule {
     --     rule = {},
