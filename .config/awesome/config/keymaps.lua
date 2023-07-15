@@ -114,7 +114,7 @@ awful.keyboard.append_global_keybindings({
         keygroup    = "numrow",
         description = "only view tag",
         group       = "tag",
-        on_press    = function (index)
+        on_press    = function(index)
             local screen = awful.screen.focused()
             local tag = screen.tags[index]
             if tag then
@@ -127,7 +127,7 @@ awful.keyboard.append_global_keybindings({
         keygroup    = "numrow",
         description = "toggle tag",
         group       = "tag",
-        on_press    = function (index)
+        on_press    = function(index)
             local screen = awful.screen.focused()
             local tag = screen.tags[index]
             if tag then
@@ -136,11 +136,11 @@ awful.keyboard.append_global_keybindings({
         end,
     },
     awful.key {
-        modifiers = { modkey, "Shift" },
+        modifiers   = { modkey, "Shift" },
         keygroup    = "numrow",
         description = "move focused client to tag",
         group       = "tag",
-        on_press    = function (index)
+        on_press    = function(index)
             if client.focus then
                 local tag = client.focus.screen.tags[index]
                 if tag then
@@ -154,7 +154,7 @@ awful.keyboard.append_global_keybindings({
         keygroup    = "numrow",
         description = "toggle focused client on tag",
         group       = "tag",
-        on_press    = function (index)
+        on_press    = function(index)
             if client.focus then
                 local tag = client.focus.screen.tags[index]
                 if tag then
@@ -168,7 +168,7 @@ awful.keyboard.append_global_keybindings({
         keygroup    = "numpad",
         description = "select layout directly",
         group       = "layout",
-        on_press    = function (index)
+        on_press    = function(index)
             local t = awful.screen.focused().selected_tag
             if t then
                 t.layout = t.layouts[index] or t.layout
@@ -184,7 +184,7 @@ awful.keyboard.append_global_keybindings({
             awful.spawn.with_shell("maim -s | xclip -selection clipboard -t image/png")
         end,
         { description = "Take screenshot fullscreen", group = "screen" }),
-    awful.key({"Shift"}, "Print",
+    awful.key({ "Shift" }, "Print",
         function()
             awful.spawn.with_shell("maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png")
         end,
@@ -231,70 +231,71 @@ awful.keyboard.append_global_keybindings({
         end,
         { description = "Previous music", group = "MPD" }),
 
-        -- awful.key({}, "XF86MonBrightnessDown",
-        --     function()
-        --         awesome.emit_signal("brightness::set", false)
-        --     end,
-        --     { description = "Brightness down", group = "system" }),
-        -- awful.key({}, "XF86MonBrightnessUp",
-        --     function()
-        --         awesome.emit_signal("brightness::set", true)
-        --     end,
-        --     { description = "Brightness up", group = "system" })
+    -- awful.key({}, "XF86MonBrightnessDown",
+    --     function()
+    --         awesome.emit_signal("brightness::set", false)
+    --     end,
+    --     { description = "Brightness down", group = "system" }),
+    -- awful.key({}, "XF86MonBrightnessUp",
+    --     function()
+    --         awesome.emit_signal("brightness::set", true)
+    --     end,
+    --     { description = "Brightness up", group = "system" })
 })
 
 -- Standard programs
 awful.keyboard.append_global_keybindings({
-    awful.key({modkey}, "b", function() awful.spawn("firefox") end,
-        {description = "open browser", group = "launcher"}),
-    awful.key({modkey, "Shift"}, "b", function() awful.spawn("firefox --private-window") end,
-        {description = "open browser in private window", group = "launcher"}),
+    awful.key({ modkey }, "b", function() awful.spawn.with_shell("GTK_IM_MODULE=xim firefox") end,
+        { description = "open browser", group = "launcher" }),
+    awful.key({ modkey, "Shift" }, "b",
+        function() awful.spawn.with_shell("GTK_IM_MODULE=xim firefox --private-window") end,
+        { description = "open browser in private window", group = "launcher" }),
 })
 
 -- Client keybindings
 client.connect_signal("request::default_keybindings", function()
     awful.keyboard.append_client_keybindings({
-        awful.key({ modkey,           }, "f",
-            function (c)
+        awful.key({ modkey, }, "f",
+            function(c)
                 c.fullscreen = not c.fullscreen
                 c:raise()
             end,
-            {description = "toggle fullscreen", group = "client"}),
-        awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end,
-                {description = "close", group = "client"}),
-        awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
-                {description = "toggle floating", group = "client"}),
-        awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
-                {description = "move to master", group = "client"}),
-        awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
-                {description = "move to screen", group = "client"}),
-        awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end,
-                {description = "toggle keep on top", group = "client"}),
-        awful.key({ modkey,           }, "n",
-            function (c)
+            { description = "toggle fullscreen", group = "client" }),
+        awful.key({ modkey, "Shift" }, "c", function(c) c:kill() end,
+            { description = "close", group = "client" }),
+        awful.key({ modkey, "Control" }, "space", awful.client.floating.toggle,
+            { description = "toggle floating", group = "client" }),
+        awful.key({ modkey, "Control" }, "Return", function(c) c:swap(awful.client.getmaster()) end,
+            { description = "move to master", group = "client" }),
+        awful.key({ modkey, }, "o", function(c) c:move_to_screen() end,
+            { description = "move to screen", group = "client" }),
+        awful.key({ modkey, }, "t", function(c) c.ontop = not c.ontop end,
+            { description = "toggle keep on top", group = "client" }),
+        awful.key({ modkey, }, "n",
+            function(c)
                 -- The client currently has the input focus, so it cannot be
                 -- minimized, since minimized clients can't have the focus.
                 c.minimized = true
-            end ,
-            {description = "minimize", group = "client"}),
-        awful.key({ modkey,           }, "m",
-            function (c)
+            end,
+            { description = "minimize", group = "client" }),
+        awful.key({ modkey, }, "m",
+            function(c)
                 c.maximized = not c.maximized
                 c:raise()
-            end ,
-            {description = "(un)maximize", group = "client"}),
+            end,
+            { description = "(un)maximize", group = "client" }),
         awful.key({ modkey, "Control" }, "m",
-            function (c)
+            function(c)
                 c.maximized_vertical = not c.maximized_vertical
                 c:raise()
-            end ,
-            {description = "(un)maximize vertically", group = "client"}),
-        awful.key({ modkey, "Shift"   }, "m",
-            function (c)
+            end,
+            { description = "(un)maximize vertically", group = "client" }),
+        awful.key({ modkey, "Shift" }, "m",
+            function(c)
                 c.maximized_horizontal = not c.maximized_horizontal
                 c:raise()
-            end ,
-            {description = "(un)maximize horizontally", group = "client"}),
+            end,
+            { description = "(un)maximize horizontally", group = "client" }),
     })
 end)
 
