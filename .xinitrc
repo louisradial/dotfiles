@@ -33,6 +33,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 exec nvidia-settings -l &
-exec nfancurve -c ~/.config/nvidia/nfancurve.conf &
+#exec nfancurve -c ~/.config/nvidia/nfancurve.conf &
 exec picom &
 exec awesome
