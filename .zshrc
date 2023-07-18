@@ -20,6 +20,11 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+unalias run-help 2>/dev/null
+autoload -Uz run-help
+alias help='run-help '
+autoload -Uz run-help-git run-help-openssl run-help-sudo
+
 LANG=en_US.UTF-8
 export EDITOR='nvim'
 
