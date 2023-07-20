@@ -71,7 +71,7 @@ ruled.client.connect_signal("request::rules", function()
     -- Steam spawns a bunch of windows, supposed to be floating, I guess
     ruled.client.append_rule {
         rule_every = {
-            class = { "steamwebhelper", "Steam" },
+            class = { "steamwebhelper", "Steam", "steam" },
             name = { "Special Offers", "Steam - News", "Settings", "Friends List", "Steam - Self Updater" }
         },
         properties = { floating = true, screen = 2, tag = "2" }
@@ -104,6 +104,15 @@ ruled.client.connect_signal("request::rules", function()
     ruled.client.append_rule {
         rule_any = {
             name = { "REDlauncher", "The Witcher 3" }
+        },
+        properties = { screen = 1, tag = "5", switch_to_tags = true }
+    }
+
+    -- baldur's gate 3
+    ruled.client.append_rule {
+        rule_any = {
+            name = { "LariLauncher" },
+            class = { "steam_app_1086940" }
         },
         properties = { screen = 1, tag = "5", switch_to_tags = true }
     }
