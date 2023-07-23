@@ -117,6 +117,13 @@ ruled.client.connect_signal("request::rules", function()
         properties = { screen = 1, tag = "5", switch_to_tags = true }
     }
 
+    ruled.client.append_rule {
+        rule = {
+            name = "UNDERTALE"
+        },
+        properties = { screen = 1, tag = "5", switch_to_tags = true, floating = false }
+    }
+
     -- ncmpcpp
     ruled.client.append_rule {
         rule = {
