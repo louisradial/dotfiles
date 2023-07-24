@@ -181,12 +181,17 @@ awful.keyboard.append_global_keybindings({
 awful.keyboard.append_global_keybindings({
     awful.key({}, "Print",
         function()
-            awful.spawn.with_shell("maim -s | xclip -selection clipboard -t image/png")
+            awful.spawn.with_shell("maim -u -s -m 10 | xclip -selection clipboard -t image/png")
         end,
-        { description = "Take screenshot fullscreen", group = "screen" }),
+        { description = "Take screenshot", group = "screen" }),
+    awful.key({"Control"}, "Print",
+        function()
+            awful.spawn.with_shell("maim -u -m 10 | xclip -selection clipboard -t image/png")
+        end,
+        { description = "Take fullscreen screenshot", group = "screen" }),
     awful.key({ "Shift" }, "Print",
         function()
-            awful.spawn.with_shell("maim -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png")
+            awful.spawn.with_shell("maim -u -m 10 -i $(xdotool getactivewindow) | xclip -selection clipboard -t image/png")
         end,
         { description = "Take screenshot of current window", group = "screen" }),
     awful.key({}, "XF86AudioRaiseVolume",
