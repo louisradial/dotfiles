@@ -10,8 +10,8 @@ local min_level = 40    -- pretty quiet already, should mute audio if needed to 
 local step = (max_level - min_level) / 6
 
 local ratio_to_level = function(ratio)
-    if ratio >= 1.00 then return max_level end
-    if ratio <= 0.00 then return min_level end
+    if ratio >= 0.99 then return max_level end
+    if ratio <= 0.01 then return min_level end
     local level = ratio * (max_level - min_level) + min_level
     return level -- gonna probably have to round off here
 end
@@ -23,31 +23,7 @@ local level_to_ratio = function(level)
     return ratio -- gonna probably have to round off here
 end
 
--- local function get_sink_line()
---     local sink_name = ""
---     awful.spawn("pactl get-default-sink", true,
---         function(stdout)
---             naughty.notification {
---                 title = "PulseAudio Default Sink",
---                 text = stdout,
---             }
---             sink_name = stdout
---             return sink_name
---         end)
---     if sink_name == "" then
---         return 54
---     else
---         return 1
---     end
--- end
-
-local function info_cmd(sink_line)
-    return "pactl list sinks | awk \'NR==" .. sink_line + 8 .. " {print $2} NR==" .. sink_line + 9 .. " {print $5,$12}\'"
-end
-
-local get_audio_info_cmd = info_cmd(1)
-local get_level_cmd = "pactl get-sink-volume @DEFAULT_SINK@"
-local get_mute_cmd = "pactl get-sink-mute @DEFAULT_SINK@"
+local get_audio_info_cmd = "(pactl get-sink-mute @DEFAULT_SINK@ && pactl get-sink-volume @DEFAULT_SINK@) | awk \'NR==1 {print $2} NR==2 {print $5,$12}\'"
 local toggle_mute_cmd = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 local set_level_cmd = function(level)
     return "pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ " .. level .. "%"
