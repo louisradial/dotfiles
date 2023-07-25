@@ -45,7 +45,7 @@ local function info_cmd(sink_line)
     return "pactl list sinks | awk \'NR==" .. sink_line + 8 .. " {print $2} NR==" .. sink_line + 9 .. " {print $5,$12}\'"
 end
 
-local get_audio_info_cmd = info_cmd(54)
+local get_audio_info_cmd = info_cmd(1)
 local get_level_cmd = "pactl get-sink-volume @DEFAULT_SINK@"
 local get_mute_cmd = "pactl get-sink-mute @DEFAULT_SINK@"
 local toggle_mute_cmd = "pactl set-sink-mute @DEFAULT_SINK@ toggle"
