@@ -6,7 +6,7 @@ return {
         -- note: VimTex uses latexmk as default.
         -- set lualatex as default latex engine
         vim.g.vimtex_compiler_latexmk = {
-            build_dir = '.out',
+            aux_dir = '.aux',
             options = {
                 '-shell-escape',
                 '-verbose',
