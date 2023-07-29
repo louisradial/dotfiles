@@ -17,13 +17,14 @@ local widgets = {
     arch          = require("ui.bar.modules.arch"),
     clock         = require("ui.bar.modules.clock"),
     volume        = require("ui.bar.modules.volume"),
+    weather       = require("ui.bar.modules.weather"),
     -- battery        = require("ui.bar.modules.battery"),
     -- brightness     = require("ui.bar.modules.brightness"),
 }
 
 screen.connect_signal("request::desktop_decoration", function(s)
     -- each screen has its own tag table.
-    awful.tag({ "1", "2", "3", "4", "5"}, s, awful.layout.layouts[1])
+    awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     -- s.mypromptbox = awful.widget.prompt()
@@ -48,7 +49,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
         height = dpi(32),
         width = s.geometry.width - beautiful.useless_gap * 4,
         bg = color.crust,
-        shape = helpers.mkroundedrect(3*beautiful.useless_gap),
+        shape = helpers.mkroundedrect(3 * beautiful.useless_gap),
         input_passthrough = true,
     })
     s.wibox.y = beautiful.useless_gap
@@ -76,6 +77,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
             --container_cpu_widget,
             --container_mem_widget,
             -- container_brightness_widget,
+            widgets.weather,
             widgets.volume,
             -- container_battery_widget,
             widgets.clock,
