@@ -130,6 +130,9 @@ ruled.client.connect_signal("request::rules", function()
         rule = {
             class = "yuzu"
         },
+        except = {
+            name = "Dialog"
+        },
         properties = { screen = 1, tag = "5", switch_to_tags = true, floating = false }
     }
 
