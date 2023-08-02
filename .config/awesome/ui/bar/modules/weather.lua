@@ -56,7 +56,7 @@ local weather_icon = wibox.widget {
     align  = 'center',
     valign = 'center',
     widget = wibox.widget.textbox,
-    font = "IosevkaTerm Nerd Font 16"
+    font = "IosevkaTerm Nerd Font 12"
 }
 
 local weather_text = wibox.widget {
