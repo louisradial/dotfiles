@@ -112,9 +112,18 @@ ruled.client.connect_signal("request::rules", function()
     ruled.client.append_rule {
         rule_any = {
             name = { "LariLauncher" },
-            class = { "steam_app_1086940" }
         },
         properties = { screen = 1, tag = "5", switch_to_tags = true }
+    }
+
+    ruled.client.append_rule {
+        rule_any = {
+            class = { "steam_app_1086940" }
+        },
+        except_any = {
+            name = { "LariLauncher" }
+        },
+        properties = { screen = 1, tag = "5", switch_to_tags = true, fullscreen = true }
     }
 
     -- undertale
