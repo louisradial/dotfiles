@@ -10,8 +10,8 @@ local draw_bar = utils.draw_bar
 
 local volume_icon = wibox.widget {
     align = 'center',
-    valign = 'top',
-    font = 'IosevkaTerm Nerd Font 10',
+    valign = 'center',
+    font = 'IosevkaTerm Nerd Font 12',
     widget = wibox.widget.textbox
 }
 

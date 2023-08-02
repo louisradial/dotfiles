@@ -9,10 +9,10 @@ local beautiful = require("beautiful")
 
 local weather_icons = {
     -- clear sky
-    ["01d"] = {icon = " ", color = color.peach},
+    ["01d"] = {icon = " ", color = color.flamingo},
     ["01n"] = {icon = "󰖔 ", color = color.lavender},
     -- few clouds
-    ["02d"] = {icon = "󰖕 ", color = color.yellow},
+    ["02d"] = {icon = "󰖕 ", color = color.rosewater},
     ["02n"] = {icon = "󰼱 ", color = color.lavender},
     -- scattered clouds
     ["03d"] = {icon = " ", color = color.subtext0},
@@ -45,26 +45,39 @@ local function get_weather_icon(icon_id)
     return try_icon
 end
 
+local function show_temperature(raw_temperature)
+    local num = tonumber(raw_temperature)
+    local c = 2^52 + 2^51
+    local rounded = ((num*10 + c) -c)/10
+    return tostring(rounded) .. "°C"
+end
+
+local weather_icon = wibox.widget {
+    align  = 'center',
+    valign = 'center',
+    widget = wibox.widget.textbox,
+    font = "IosevkaTerm Nerd Font 16"
+}
 
 local weather_text = wibox.widget {
     align  = 'center',
     valign = 'center',
     widget = wibox.widget.textbox,
-    font = "IosevkaTerm Nerd Font 12"
+    -- font = "IosevkaTerm Nerd Font Mono 12"
 }
 
-awesome.connect_signal("weather::update", function(icon, temperature)
-    local weather_info = get_weather_icon(icon)
-    weather_text.text = weather_info.icon .. " " .. temperature .. "°C"
-    -- awesome.emit_signal("property::fg", weather_background, color.yellow)
-end)
-
-
-local container_weather_widget = {
+local container_weather_widget = wibox.widget {
     {
         {
             {
-                widget = weather_text
+                {
+                    widget = weather_icon
+                },
+                {
+                    widget = weather_text
+                },
+                spacing = 4,
+                layout = wibox.layout.fixed.horizontal,
             },
             left   = 6,
             right  = 6,
@@ -84,6 +97,12 @@ local container_weather_widget = {
     widget = wibox.container.margin
 }
 
+awesome.connect_signal("weather::update", function(icon, temperature)
+    local weather_info = get_weather_icon(icon)
+    weather_text.text = show_temperature(temperature)
+    weather_icon.text = weather_info.icon
+    container_weather_widget.widget.fg = weather_info.color
+end)
 
 
 return container_weather_widget
