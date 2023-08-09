@@ -4,7 +4,7 @@ return {
     dependencies = 'nvim-treesitter/nvim-treesitter-textobjects',
     event = "BufReadPost",
     opts = {
-        ensure_installed = { 'c', 'lua', 'python', 'rust', 'help', 'markdown', 'json', 'bash', 'html', 'javascript' },
+        ensure_installed = { 'c', 'lua', 'python', 'rust', 'vim', 'markdown', 'json', 'bash', 'html', 'javascript' },
 
         highlight = {
             enable = true,
