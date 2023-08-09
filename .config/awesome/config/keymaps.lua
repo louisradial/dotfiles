@@ -236,6 +236,7 @@ awful.keyboard.append_global_keybindings({
         end,
         { description = "Previous music", group = "MPD" }),
 
+    -- laptop only
     -- awful.key({}, "XF86MonBrightnessDown",
     --     function()
     --         awesome.emit_signal("brightness::set", false)
