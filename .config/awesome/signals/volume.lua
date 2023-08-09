@@ -75,7 +75,8 @@ awesome.connect_signal("volume::set_level", function(increase)
     if level ~= audio_info.level then
         awful.spawn.with_shell(set_level_cmd(level))
         audio_info.level = level
-        awesome.emit_signal("volume::update", level_to_ratio(audio_info.level), audio_info.muted)
+        audio_info.muted = false
+        awesome.emit_signal("volume::update", level_to_ratio(audio_info.level), false)
     end
 end)
 
