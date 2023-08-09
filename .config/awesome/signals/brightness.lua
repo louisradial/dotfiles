@@ -1,34 +1,41 @@
 local awful = require("awful")
 local gears = require("gears")
 
-local update_time = 7200 -- seconds, I hope
-local max_brightness = 100
-local min_brightness = 10
-local step = (max_brightness - min_brightness) / 6
+local update_time = 7200
 
-local function set_brightness_cmd(level)
-    return "light -S " .. level
-end
+local brightness_levels = {
+    "4", "20", "36", "52", "68", "84", "100"
+}
 
 local function level_to_ratio(level)
-    return (level - min_brightness) / (max_brightness - min_brightness)
+    return (level - 1)/6
+end
+
+local function set_brightness_cmd(level)
+    return "light -S " .. brightness_levels[level]
+end
+
+local function brightness_to_level(brightness)
+    local c = 2^52 + 2^51
+    return 1 + (0.06*brightness + c) - c
 end
 
 local function level_within_bounds(raw_level)
     local level = raw_level
-    if level >= max_brightness then
-        level = max_brightness
-    elseif level <= min_brightness then
-        level = min_brightness
+    if level >= 7 then
+        level = 7
+    elseif level <= 1 then
+        level = 1
     end
     return level
 end
 
-local brightness_info = { level = 10 }
+local brightness_info = { level = 0 }
 
 local function update_info()
     awful.spawn.easy_async_with_shell("light -G", function(stdout)
-        local level = level_within_bounds(tonumber(stdout))
+        local raw_level = brightness_to_level(tonumber(stdout))
+        local level = level_within_bounds(raw_level)
         if brightness_info.level ~= level then
             brightness_info.level = level
             awesome.emit_signal("brightness::update", level_to_ratio(level))
@@ -55,9 +62,9 @@ end
 local function change_brightness(increase)
     local diff = 0
     if increase then
-        diff = step
+        diff = 1
     else
-        diff = -step
+        diff = -1
     end
     local level = level_within_bounds(brightness_info.level + diff)
     set_brightness(level)

@@ -1,46 +1,71 @@
--- -- Brightness widget
--- local container_brightness_widget = wibox.container
---
--- local brightness_widget = wibox.widget {
---     align  = 'center',
---     valign = 'center',
---     widget = wibox.widget.textbox
--- }
---
--- local update_brightness_widget = function(brightness)
---     brightness_widget.text = "  " .. brightness
--- end
---
--- local br, brightness_signal = awful.widget.watch('light -G', 7200, function(self, stdout)
---     local brightness = draw_bar(tonumber(stdout) / 100.0)
---     update_brightness_widget(brightness)
--- end)
---
--- container_brightness_widget = {
---     {
---         {
---             {
---                 {
---                     widget = brightness_widget,
---                     font = "Roboto Mono Nerd Font 10"
---                 },
---                 left   = 12,
---                 right  = 12,
---                 top    = 0,
---                 bottom = 0,
---                 widget = wibox.container.margin
---             },
---             shape  = gears.shape.rounded_bar,
---             fg     = color.peach,
---             bg     = widget_bg,
---             widget = wibox.container.background
---         },
---         left   = 5,
---         right  = 5,
---         top    = 7,
---         bottom = 7,
---         widget = wibox.container.margin
---     },
---     spacing = 5,
---     layout  = wibox.layout.fixed.horizontal,
--- }
+local wibox = require("wibox")
+local color = require("ui.theme.colors")
+local helpers = require("helpers")
+local beautiful = require("beautiful")
+
+local utils = require("ui.bar.utils")
+local draw_bar = utils.draw_bar
+
+local brightness_icon = wibox.widget {
+    align = 'center',
+    valign = 'center',
+    font = 'IosevkaTerm Nerd Font 12',
+    widget = wibox.widget.textbox
+}
+
+local brightness_text = wibox.widget {
+    align  = 'center',
+    valign = 'center',
+    -- font = 'IosevkaTerm Nerd Font 10',
+    widget = wibox.widget.textbox
+}
+
+local update_brightness_widget = function(ratio)
+    local image = "󰃡 "
+    if ratio >= 2.0/3.0 then
+        image = "󰃠 "
+    elseif ratio >= 1.0/3.0 then
+        image = "󰃟 "
+    else
+        image = "󰃞 "
+    end
+    brightness_icon.text = image
+    brightness_text.text = draw_bar(ratio)
+end
+
+awesome.connect_signal("brightness::update", function(ratio)
+    update_brightness_widget(ratio)
+end)
+
+local container_brightness_widget = {
+    {
+        {
+            {
+                {
+                    widget = brightness_icon
+                },
+                {
+                    widget = brightness_text
+                },
+                spacing = 4,
+                layout = wibox.layout.fixed.horizontal,
+            },
+            left   = 6,
+            right  = 6,
+            top    = 0,
+            bottom = 0,
+            widget = wibox.container.margin
+        },
+        shape  = helpers.mkroundedrect(3 * beautiful.useless_gap),
+        fg     = color.rosewater,
+        bg     = color.surface0,
+        widget = wibox.container.background
+    },
+    left   = 0,
+    right  = 0,
+    top    = 6,
+    bottom = 6,
+    widget = wibox.container.margin
+}
+
+return container_brightness_widget
