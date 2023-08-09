@@ -1,5 +1,4 @@
 local wibox = require("wibox")
-local awful = require("awful")
 local color = require("ui.theme.colors")
 local helpers = require("helpers")
 local beautiful = require("beautiful")

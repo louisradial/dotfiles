@@ -1,12 +1,9 @@
 local wibox = require("wibox")
-local awful = require("awful")
--- local gears = require("gears")
 local color = require("ui.theme.colors")
 local helpers = require("helpers")
 local beautiful = require("beautiful")
 
 -- Weather widget
-
 local weather_icons = {
     -- clear sky
     ["01d"] = {icon = " ", color = color.flamingo},
@@ -86,7 +83,6 @@ local container_weather_widget = wibox.widget {
             widget = wibox.container.margin
         },
         shape  = helpers.mkroundedrect(3 * beautiful.useless_gap),
-        fg     = color.lavender,
         bg     = color.surface0,
         widget = wibox.container.background
     },
@@ -103,6 +99,5 @@ awesome.connect_signal("weather::update", function(icon, temperature)
     weather_icon.text = weather_info.icon
     container_weather_widget.widget.fg = weather_info.color
 end)
-
 
 return container_weather_widget
