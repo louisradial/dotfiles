@@ -43,6 +43,9 @@ local function get_weather_icon(icon_id)
 end
 
 local function show_temperature(raw_temperature)
+    if raw_temperature == "??" then
+        return  "?? °C"
+    end
     local num = tonumber(raw_temperature)
     local c = 2^52 + 2^51
     local rounded = ((num*10 + c) -c)/10
