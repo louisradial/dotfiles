@@ -27,8 +27,8 @@ if [ -z "${pad}" ]; then
 fi
 
 xsetwacom set "${pad}" Button 1 2
-xsetwacom set "${pad}" Button 2 "key ctrl c"
-xsetwacom set "${pad}" Button 3 "key ctrl v"
+xsetwacom set "${pad}" Button 2 "key ctrl c ctrl v"
+xsetwacom set "${pad}" Button 3 "key del"
 xsetwacom set "${pad}" Button 8 "key ctrl z"
 
 # eraser=$(echo "${list}" | awk '/eraser/' | cut -f 2 | cut -d ' ' -f 2)
