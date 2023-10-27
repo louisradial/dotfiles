@@ -108,22 +108,34 @@ ruled.client.connect_signal("request::rules", function()
         properties = { screen = 1, tag = "5", switch_to_tags = true }
     }
 
-    -- baldur's gate 3
+    -- baldur's gate
     ruled.client.append_rule {
         rule_any = {
-            name = { "LariLauncher" },
+            class = {"BaldursGate", "BaldursGateII"}
         },
         properties = { screen = 1, tag = "5", switch_to_tags = true }
     }
 
+    -- baldur's gate 3
     ruled.client.append_rule {
-        rule_any = {
+        rule_any = { -- why any???
             class = { "steam_app_1086940" }
         },
-        except_any = {
-            name = { "LariLauncher" }
+        properties = { screen = 1, tag = "5", switch_to_tags = true },
+        -- gods why
+        callback = function(c)
+            c.floating = true
+            c.fullscreen = false
+            c.fullscreen = true
+            c.floating = false
+        end,
+    }
+
+    ruled.client.append_rule {
+        rule = {
+            class = "steam_app_2248430"
         },
-        properties = { screen = 1, tag = "5", switch_to_tags = true, fullscreen = true }
+        properties = {screen = 1, tag = "5", switch_to_tags = true },
     }
 
     -- undertale
@@ -131,7 +143,7 @@ ruled.client.connect_signal("request::rules", function()
         rule = {
             name = "UNDERTALE"
         },
-        properties = { screen = 1, tag = "5", switch_to_tags = true, floating = false }
+        properties = { screen = 1, tag = "5", switch_to_tags = true, floating = false },
     }
 
     -- yuzu
@@ -145,6 +157,14 @@ ruled.client.connect_signal("request::rules", function()
         properties = { screen = 1, tag = "5", switch_to_tags = true, floating = false }
     }
 
+    -- cemu
+    ruled.client.append_rule {
+        rule = {
+            class = "Cemu"
+        },
+        properties = { screen = 1, tag = "5", switch_to_tags = true }
+    }
+
     -- ncmpcpp
     ruled.client.append_rule {
         rule = {
@@ -156,7 +176,7 @@ ruled.client.connect_signal("request::rules", function()
     -- xournalpp
     ruled.client.append_rule {
         rule = {
-            class = "Xournalpp",
+            class = "Com.github.xournalpp.xournalpp",
         },
         properties = { screen = 1, tag = "2", switch_to_tags = true, maximized = false }
     }
