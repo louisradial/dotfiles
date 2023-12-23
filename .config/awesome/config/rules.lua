@@ -138,6 +138,14 @@ ruled.client.connect_signal("request::rules", function()
         properties = {screen = 1, tag = "5", switch_to_tags = true },
     }
 
+    -- sekiro
+    ruled.client.append_rule {
+        rule = {
+            class = "steam_app_814380"
+        },
+        properties = { screen = 1, tag = "5", switch_to_tags = true, floating = false },
+    }
+
     -- undertale
     ruled.client.append_rule {
         rule = {
