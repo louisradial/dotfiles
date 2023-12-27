@@ -11,6 +11,7 @@ ruled.client.connect_signal("request::rules", function()
             focus     = awful.client.focus.filter,
             raise     = true,
             screen    = awful.screen.preferred,
+            -- shape = helpers.mkroundedrect(3*beautiful.theme.useless_gap),
             placement = awful.placement.no_overlap + awful.placement.no_offscreen
         }
     }
@@ -144,6 +145,14 @@ ruled.client.connect_signal("request::rules", function()
             class = "steam_app_814380"
         },
         properties = { screen = 1, tag = "5", switch_to_tags = true, floating = false },
+    }
+
+    -- inscryption
+    ruled.client.append_rule {
+        rule = {
+            class = "Inscryption.x86_64"
+        },
+        properties = { screen = 1, tag = "5", switch_to_tags = true, floating = false}
     }
 
     -- undertale
