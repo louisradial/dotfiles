@@ -63,6 +63,6 @@ require("config.rules")
 
 require("ui.titlebars")
 
-require("config.signals")
+require("config.clientsignals")
 
 require("config.autorun")
