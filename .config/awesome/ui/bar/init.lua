@@ -16,6 +16,7 @@ local widgets = {
     clock         = require("ui.bar.modules.clock"),
     volume        = require("ui.bar.modules.volume"),
     weather       = require("ui.bar.modules.weather"),
+    pomodoro      = require("ui.bar.modules.pomodoro")
     -- laptop widgets
     -- battery       = require("ui.bar.modules.battery"),
     -- brightness    = require("ui.bar.modules.brightness"),
@@ -35,7 +36,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
         border_width = beautiful.border_width,
         border_color = color.surface2,
         height = dpi(32),
-        width = s.geometry.width - beautiful.useless_gap * 4,
+        width = s.geometry.width - beautiful.useless_gap * 6,
         bg = color.crust,
         shape = helpers.mkroundedrect(3 * beautiful.useless_gap),
         input_passthrough = true,
@@ -57,6 +58,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
         },
         {
             -- Right widgets
+            widgets.pomodoro,
             widgets.weather,
             widgets.volume,
             -- laptop widgets
