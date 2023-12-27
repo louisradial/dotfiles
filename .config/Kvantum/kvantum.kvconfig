@@ -3,3 +3,4 @@ theme=Catppuccin-Mocha-Mauve
 
 [Applications]
 Catppuccin-Latte-Mauve=qucs-s
+Catppuccin-Mocha-Mauve=anki, yuzu, rpcs3
