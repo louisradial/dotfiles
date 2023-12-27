@@ -65,7 +65,7 @@ theme.hotkeys_bg                = color.surface0
 theme.hotkeys_fg                = color.text
 theme.hotkeys_border_color      = color.crust
 theme.hotkeys_border_width      = dpi(1)
-theme.hotkeys_shape      = helpers.mkroundedrect(3 * theme.useless_gap)
+theme.hotkeys_shape             = helpers.mkroundedrect(3*theme.useless_gap)
 -- theme.hotkeys_bounding_shape       = helpers.mkroundedrect(3 * theme.useless_gap)
 -- theme.hotkeys_label_bg     = color.flamingo -- not sure what it does.
 theme.hotkeys_label_fg          = color.crust
@@ -82,12 +82,13 @@ theme.hotkeys_font              = "IosevkaTerm Nerd Font Mono 10"
 -- )
 
 -- Variables set for theming notifications:
-theme.notification_font         = "IosevkaTerm Nerd Font Mono 10"
--- theme.notification_shape   = helpers.mkroundedrect(3*theme.useless_gap)
-theme.notification_border_color = color.crust
-theme.notification_border_width = dpi(3)
+theme.notification_font         = "IosevkaTerm Nerd Font 12"
+theme.notification_shape        = helpers.mkroundedrect(3 * theme.useless_gap)
+theme.notification_border_color = color.mauve
+theme.notification_border_width = dpi(1)
 theme.notification_bg           = color.surface0
 theme.notification_fg           = color.text
+-- theme.notification_margin = 2
 -- notification_font
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
