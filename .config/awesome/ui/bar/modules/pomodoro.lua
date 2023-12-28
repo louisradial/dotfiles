@@ -2,15 +2,15 @@ local wibox = require("wibox")
 local color = require("ui.theme.colors")
 local helpers = require("helpers")
 local beautiful = require("beautiful")
-local awful = require("awful")
-local naughty = require("naughty")
+-- local awful = require("awful")
+-- local naughty = require("naughty")
 
 -- Pomodoro widget
 local pomodoro_icons = {
     ["inactive"] = { icon = "󱉟 ", color = color.overlay0 },
     ["pomodoro"] = { icon = "󰗚 ", color = color.mauve },
-    ["short break even"] = { icon = " ", color = color.mauve },
-    ["short break odd"] = { icon = "󰉚 ", color = color.mauve },
+    ["short break odd"] = { icon = " ", color = color.mauve },
+    ["short break even"] = { icon = "󰉚 ", color = color.mauve },
     ["long break"] = { icon = " ", color = color.mauve },
     ["done"] = { icon = "󱉟 ", color = color.mauve },
 }

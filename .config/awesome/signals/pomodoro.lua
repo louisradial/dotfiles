@@ -17,8 +17,8 @@ local notification_width          = dpi(160)
 local notification_height         = dpi(60)
 local notification_title          = "   Pomodoro   "
 local message_pomodoro            = " Starting timer "
-local message_short_break_odd     = "󰉚  Snack time 󰉚 "
-local message_short_break_even    = "   Work out   "
+local message_short_break_even    = "󰉚  Snack time 󰉚 "
+local message_short_break_odd     = "   Work out   "
 local message_long_break          = "   Long break   "
 
 -- timers
