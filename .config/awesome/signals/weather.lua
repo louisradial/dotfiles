@@ -2,29 +2,23 @@ local awful = require("awful")
 local gears = require("gears")
 -- local naughty = require("naughty") if debug is needed
 
--- do not commit this
-local longitude =
-local latitude =
-local key =
+local update_time = 900
+local weather_cmd = "zsh ~/.config/awesome/scripts/weather.sh"
 
-local update_time = 1800
-local weather_cmd = [[
-    bash -c '
-    KEY=]]..key..[[
-    LAT=]]..latitude..[[
-    LON=]]..longitude..[[
-
-    weather=$(curl -sf "https://api.openweathermap.org/data/2.5/weather?lat=$LAT&lon=$LON&appid=$KEY&units=metric")
-
-    if [ ! -z "$weather" ]; then
-        weather_temp=$(echo "$weather" | jq ".main.temp")
-        weather_icon=$(echo "$weather" | jq -r ".weather[].icon" | head -1)
-
-        echo "$weather_icon"@"$weather_temp"
-    else
-        echo "??@??"
-    fi
-  ']]
+-- cat weather.sh
+-- KEY = api_key
+-- LAT = latitude
+-- LON = longitude
+-- weather=$(curl -sf "https://api.openweathermap.org/data/2.5/weather?lat=$LAT&lon=$LON&appid=$KEY&units=metric")
+--
+-- if [ ! -z "$weather" ]; then
+--     weather_temp=$(echo "$weather" | jq ".main.temp")
+--     weather_icon=$(echo "$weather" | jq -r ".weather[].icon" | head -1)
+--
+--     echo "$weather_icon"@"$weather_temp"
+-- else
+--     echo "??@??"
+-- fi
 
 local weather_info = {
     icon = "50d",
