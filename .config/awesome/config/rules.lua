@@ -112,7 +112,7 @@ ruled.client.connect_signal("request::rules", function()
     -- baldur's gate
     ruled.client.append_rule {
         rule_any = {
-            class = {"BaldursGate", "BaldursGateII"}
+            class = { "BaldursGate", "BaldursGateII" }
         },
         properties = { screen = 1, tag = "5", switch_to_tags = true }
     }
@@ -136,7 +136,7 @@ ruled.client.connect_signal("request::rules", function()
         rule = {
             class = "steam_app_2248430"
         },
-        properties = {screen = 1, tag = "5", switch_to_tags = true },
+        properties = { screen = 1, tag = "5", switch_to_tags = true },
     }
 
     -- sekiro
@@ -147,12 +147,20 @@ ruled.client.connect_signal("request::rules", function()
         properties = { screen = 1, tag = "5", switch_to_tags = true, floating = false },
     }
 
+    -- lisa
+    ruled.client.append_rule {
+        rule = {
+            class = "lisa.x86_64"
+        },
+        properties = { screen = 1, tag = "5", switch_to_tags = true, floating = false },
+    }
+
     -- inscryption
     ruled.client.append_rule {
         rule = {
             class = "Inscryption.x86_64"
         },
-        properties = { screen = 1, tag = "5", switch_to_tags = true, floating = false}
+        properties = { screen = 1, tag = "5", switch_to_tags = true, floating = false }
     }
 
     -- undertale
