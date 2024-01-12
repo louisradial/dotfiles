@@ -60,7 +60,10 @@ else
   [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 fi
 
+eval "$(zoxide init zsh)"
+
 source ~/.config/zsh/powerlevel10k/powerlevel10k.zsh-theme
+source ~/.config/zsh/zellij-completion.zsh
 source ~/.config/zsh/catppuccin-tty.zsh
 source ~/.config/zsh/zsh-syntax-highlighting/catppuccin_mocha-zsh-syntax-highlighting.zsh
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
