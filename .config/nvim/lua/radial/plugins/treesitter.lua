@@ -1,4 +1,5 @@
-return {
+if false then return {}
+else return {
     'nvim-treesitter/nvim-treesitter',
     build = ":TSUpdate",
     dependencies = 'nvim-treesitter/nvim-treesitter-textobjects',
@@ -69,3 +70,4 @@ return {
         require('nvim-treesitter.configs').setup(opts)
     end,
 }
+end

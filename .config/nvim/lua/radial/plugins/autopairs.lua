@@ -7,6 +7,7 @@ return {
     config = function(_, opts)
         require("nvim-autopairs").setup(opts)
 
+
         -- --- setup for cmp
         -- local cmp_autopairs = require("nvim-autopairs.completion.cmp")
         -- local cmp_status_ok, cmp = pcall(require, "cmp")

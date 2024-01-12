@@ -1,7 +1,11 @@
+if false then return {}
+else
 return {
     {
         'nvim-telescope/telescope.nvim',
-        cmd = "Telescope",
+        lazy=false,
+        -- event="VeryLazy",
+        -- cmd = "Telescope",
         keys = {
             { '<leader>gf', '<cmd>Telescope git_files show_untracked=true<cr>', desc = '[G]it [F]iles' },
             { '<leader>sf', '<cmd>Telescope find_files<cr>', desc = '[S]earch [F]iles' },
@@ -49,3 +53,4 @@ return {
     }
 }
 -- use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
+end

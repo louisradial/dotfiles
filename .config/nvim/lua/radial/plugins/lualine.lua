@@ -1,3 +1,5 @@
+if false then return {}
+else
 return {
     'nvim-lualine/lualine.nvim',
     dependencies = {
@@ -218,3 +220,4 @@ return {
         }
     end,
 }
+end

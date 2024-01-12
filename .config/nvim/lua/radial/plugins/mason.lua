@@ -1,4 +1,5 @@
-return {
+if true then return {}
+else return {
 	"williamboman/mason.nvim",
     lazy = false,
 	opts = {
@@ -27,3 +28,4 @@ return {
 	-- 	end
 	-- end,
 }
+end

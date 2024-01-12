@@ -1,59 +1,28 @@
+if false then return {} end
 return {
     'VonHeikemen/lsp-zero.nvim',
     event = 'VeryLazy',
-    branch = 'v1.x',
+    -- branch = 'v1.x',
     dependencies = {
         -- LSP support
         { 'neovim/nvim-lspconfig' },
-        { 'williamboman/mason.nvim', lazy = true },
+        { 'williamboman/mason.nvim',           lazy = true },
         { 'williamboman/mason-lspconfig.nvim', lazy = true },
 
         -- Snippets
-        { 'L3MON4D3/LuaSnip', lazy = true },
-        { 'rafamadriz/friendly-snippets', lazy = true },
+        { 'L3MON4D3/LuaSnip',                  lazy = true },
+        { 'rafamadriz/friendly-snippets',      lazy = true },
 
         --
-        { 'j-hui/fidget.nvim', lazy = true },
-        { 'folke/neodev.nvim', lazy = true },
-        { 'simrat39/rust-tools.nvim', lazy = true },
+        { 'j-hui/fidget.nvim',                 lazy = true },
+        { 'folke/neodev.nvim',                 lazy = true },
+        { 'simrat39/rust-tools.nvim',          lazy = true },
     },
     config = function()
         require('neodev').setup()
-        local lsp = require 'lsp-zero'
+        local lsp_zero = require('lsp-zero')
 
-        lsp.preset 'lsp-compe'
-        lsp.ensure_installed({
-            'lua_ls',
-            'pyright',
-            'rust_analyzer',
-        })
-
-        lsp.configure('lua_ls', {
-            settings = {
-                Lua = {
-                    diagnostics = {
-                        globals = { 'vim' }
-                    },
-                    workspace = {
-                        library = vim.api.nvim_get_runtime_file('', true),
-                        checkThirdParty = false,
-                    },
-                    telemetry = {
-                        enable = false,
-                    }
-                }
-            }
-        })
-        lsp.set_preferences({
-            suggest_lsp_servers = false,
-            sign_icons = {
-                error = "",
-                warn = "⚠",
-                hint = "",
-                info = ""
-            },
-        })
-        lsp.on_attach(function(_, bufnr)
+        lsp_zero.on_attach(function(_, bufnr)
             local map = function(mode, keys, action, desc)
                 local opts = { buffer = bufnr, noremap = true, silent = true, desc = desc }
                 return vim.keymap.set(mode, keys, action, opts)
@@ -69,30 +38,57 @@ return {
             map("i", "<C-h>", vim.lsp.buf.signature_help, "Signature [H]elp")
         end)
 
-        vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-            vim.lsp.diagnostic.on_publish_diagnostics, {
-            underline = true,
-            update_in_insert = true,
-            signs = true,
-            virtual_text = true,
-        }
-        )
-
-        local rust_lsp = lsp.build_options('rust_analyzer', {
-            settings = {
-                ["rust-analyzer"] = {
-                    inlayHints = { locationLinks = false },
-                },
+        require('mason').setup({})
+        require('mason-lspconfig').setup({
+            ensure_installed = { "lua_ls" },
+            handlers = {
+                lsp_zero.default_setup,
             },
         })
 
-        lsp.setup()
+        lsp_zero.configure('lua_ls', {
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = { 'vim' }
+                    },
+                    workspace = {
+                        library = vim.api.nvim_get_runtime_file('', true),
+                        checkThirdParty = false,
+                    },
+                    telemetry = {
+                        enable = false,
+                    }
+                }
+            }
+        })
 
-        require 'rust-tools'.setup({ server = rust_lsp })
+        lsp_zero.set_sign_icons({
+            error = "",
+            warn = "⚠",
+            hint = "",
+            info = ""
+        })
 
-        require('fidget').setup()
+        -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+        --     vim.lsp.diagnostic.on_publish_diagnostics, {
+        --     underline = true,
+        --     update_in_insert = true,
+        --     signs = true,
+        --     virtual_text = true,
+        -- }
+        -- )
+
+        -- local rust_lsp = lsp.build_options('rust_analyzer', {
+        --     settings = {
+        --         ["rust-analyzer"] = {
+        --             inlayHints = { locationLinks = false },
+        --         },
+        --     },
+        -- })
     end,
 }
+
 -- return {
 --     "neovim/nvim-lspconfig",
 --     event = "BufReadPre",

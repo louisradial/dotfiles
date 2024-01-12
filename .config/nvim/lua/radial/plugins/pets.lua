@@ -1,3 +1,6 @@
+-- ignore this plugin because there's no need to
+if true then return {} end
+
 return {
     "giusgad/pets.nvim",
     dependencies = { "MunifTanjim/nui.nvim", "giusgad/hologram.nvim" },
