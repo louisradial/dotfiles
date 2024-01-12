@@ -1,2 +1,2 @@
 setlocal spell
-setlocal spelllang=pt
+setlocal spelllang=en_us
