@@ -9,12 +9,24 @@ return {
     s({ trig = ";d", snippetType = "autosnippet" }, { t("\\delta") }),
     s({ trig = ";r", snippetType = "autosnippet" }, { t("\\rho") }),
     s({ trig = ";s", snippetType = "autosnippet" }, { t("\\sigma") }),
+    s({ trig = ";p", snippetType = "autosnippet" }, { t("\\varphi") }),
+    s({ trig = ";e", snippetType = "autosnippet" }, { t("\\epsilon") }),
+    s({ trig = ";v", snippetType = "autosnippet" }, { t("\\varepsilon") }),
     s({ trig = ";i", snippetType = "autosnippet" }, { t("\\eta") }),
     s({ trig = ";l", snippetType = "autosnippet" }, { t("\\lambda") }),
     s({ trig = "*", snippetType = "autosnippet" }, { t("^{\\ast}") }), -- somehow, having it not expanding in the middle of a 'word' is okay. V* is inconvenient but \set* is perfect.
-
-
     s({ trig = "$", snippetType="autosnippet" }, fmta([[\(<>\)]], { i(1)})),
+    s({ trig = "2x2m", snippetType="autosnippet"},
+        fmta(
+            [[
+            \begin{pmatrix}
+                <> && <>\\
+                <> && <>
+            \end{pmatrix}
+            ]],
+            { i(1), i(2), i(3), i(4) }
+        )
+    ),
     s({ trig = "def", },
         fmta(
             [[
@@ -31,6 +43,16 @@ return {
             \begin{theorem}{<>}{<>}
                 <>
             \end{theorem}
+            ]],
+            { i(1), i(2), i(3) }
+        )
+    ),
+    s({ trig = "lemma", },
+        fmta(
+            [[
+            \begin{lemma}{<>}{<>}
+                <>
+            \end{lemma}
             ]],
             { i(1), i(2), i(3) }
         )
@@ -70,10 +92,10 @@ return {
     s({ trig = "env", snippetType = "autosnippet" },
         fmta(
             [[
-      \begin{<>}
-          <>
-      \end{<>}
-    ]],
+            \begin{<>}
+                <>
+            \end{<>}
+            ]],
             {
                 i(1),
                 i(2),
@@ -82,13 +104,13 @@ return {
             { condition = line_begin }
         )
     ),
-    s({ trig = "tikzcd" },
+    s({ trig = "tikzcd", snippetType = "autosnippet" },
         fmta([[
-    \begin{equation*}
-        \begin{tikzcd}[column sep = normal, row sep = large]
-            <>
-        \end{tikzcd}
-    \end{equation*}
+        \begin{equation*}
+            \begin{tikzcd}[column sep = normal, row sep = large]
+                <>
+            \end{tikzcd}
+        \end{equation*}
         ]],
             {
                 i(1),
@@ -97,11 +119,11 @@ return {
     ),
     s({ trig = "examples" },
         fmta([[
-    \begin{example}
-        \begin{enumerate}[label=(\alph*)]
-            <>
-        \end{enumerate}
-    \end{example}
+        \begin{example}
+            \begin{enumerate}[label=(\alph*)]
+                \item <>
+            \end{enumerate}
+        \end{example}
         ]],
             {
                 i(1),
